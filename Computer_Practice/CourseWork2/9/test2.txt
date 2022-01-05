@@ -1,0 +1,18 @@
+a 8.605 Shelly
+a 8.550 Nita
+a 8.609 Colt
+a 10.610 Bull
+a 8.461 Jessie
+a 7.317 Brock
+p
+dn Brock
+p
+a 7.429 Darryl
+fk 8.605
+fn Bo
+p
+sk
+p
+sn
+p
+#

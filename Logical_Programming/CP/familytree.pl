@@ -1,0 +1,11 @@
+parents('Stu', 'Bull', 'Colt').
+parents('Buzz', 'Bull', 'Colt').
+parents('Darryl', 'Bull', 'Colt').
+parents('Mortis', 'Shelly', 'Emz').
+parents('Sprout', 'Shelly', 'Emz').
+parents('Edgar', 'Shelly', 'Emz').
+parents('Colette', '8-Bit', 'Barley').
+parents('Spike', '8-Bit', 'Barley').
+parents('Penny', 'Darryl', 'Sprout').
+parents('Rosa', 'Darryl', 'Sprout').
+parents('Griff', 'Edgar', 'Colette').

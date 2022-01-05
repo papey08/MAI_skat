@@ -1,0 +1,72 @@
+\documentclass[a5paper,16pt]{book} % В. А. Зорич Математический анализ Часть 1 Издание четвертое, исправленное 2002 год, страница 221
+\usepackage[left=10mm, top=15mm, right=20mm, bottom=15mm, nohead, nofoot]{geometry}
+\usepackage{pscyr}
+\usepackage[russian]{babel}
+\usepackage{wasysym}
+\usepackage{amssymb}
+\usepackage{setspace}
+\usepackage{amsfonts}
+\usepackage{tikz}
+
+\setlength{\headheight}{0mm}
+\setlength{\headsep}{0mm}
+
+\author{Матвей Попов}
+\date{22 февраля 2021}
+
+\setcounter{page}{221}
+
+\begin{document}
+	\begin{center}
+		\begin{spacing}{0.3}
+			§1. ДИФФЕРЕНЦИРУЕМАЯ ФУНКЦИЯ
+			\noindent\rule{\textwidth}{1pt}
+		\end{spacing}
+	\end{center}
+	Найдем касательную к графику в точке (0,0). Поскольку
+	\begin{center}
+	$f'(0) = \lim\limits_{x\to 0}\frac{x^2\sin\frac{1}{x} - 0}{x - 0} = \lim\limits_{x\to 0}x\sin\frac{1}{x} = 0$,
+	\end{center}  то касательная имеет уравнение $y - 0 = 0 \cdot (x - 0)$, или просто $y = 0$.
+	
+	Таким образом, в нашем примере касательная совпадает с осью $Ox$,с которой график имеет бесконечное количество точек пересечения в любой окрестности точки касания.
+	\begin{spacing}{2}
+		
+	\end{spacing}
+	\begin{tikzpicture}
+		\draw (4.8,0) -- (8.8,0);
+		\draw (6.8,0) -- (6.8,2);
+		\draw (6.8,0) -- (8.3,1.5);
+		\draw (6.8,0) -- (5.3,1.5);
+		\draw (6.6,1.8) node {$y$};
+		\draw (6.8,-0.2) node {0};
+		\draw (6.8,-0.8) node {Рис. 18.};
+		\draw (8.6,-0.2) node {$x$};
+		\draw (8.2,0.6) node {$y = |x|$};
+		\draw (0.8,2) node {В силу определения дифференцируе-};
+		\draw (0.6,1.6) node {мости функции $f:E \to \mathbb{R}$ в точке $x_0 \in$};
+		\draw (-1.7,1.2) node {$\in E$ имеем};
+		\draw (0.6,0) node {$f(x) - f(x_0) = A(x_0)(x - x_0) + o(x - x_0)$};
+		\draw (2.3,-0.6) node {при $x \to x_0$, $x \in E$.};
+	\end{tikzpicture}
+	\\Поскольку правая часть этого равенства стремится к нулю при $x\to x_0$, $x \in E$,\, то\, $\lim\limits_{E\ni x\to x_0}f(x)\; =\; f(x_0)$,\, так\, что\, дифференцируемая\, в\, точке\\ функция обязана быть непрерывной в этой точке.
+	
+	Покажем, что обратное, конечно, не всегда имеет место.
+	
+	\textbf{Пример 8.} Пусть $f(x) = |x|$ (рис. 18). Тогда в точке $x_0 = 0$
+	\begin{center}
+		$\lim\limits_{x\to x_0-0}\frac{f(x) - f(x_0)}{x - x_0} = \lim\limits_{x\to -0}\frac{|x| - 0}{x - 0} = \lim\limits_{x\to -0}\frac{-x}{x} = -1$,
+		
+		$\lim\limits_{x\to x_0+0}\frac{f(x) - f(x_0)}{x - x_0} = \lim\limits_{x\to +0}\frac{|x| - 0}{x - 0} = \lim\limits_{x\to +0}\frac{x}{x} = 1$.
+	\end{center}
+	Следовательно, в этой точке функция не имеет производной, а значит, и не дифференцируема в этой точке.
+	
+	\textbf{Пример 9.} Покажем, что $e ^{x+h} - e ^{x} = e ^{x}h + o(h)$ при $h \to 0$.
+	
+	Таким\, образом,\, функция\, $\exp (x)\; =\; e^x$ дифференцируема,\, причем \\$d\exp (x)h = \exp (x)h$, или $de^x = e^xdx$, и тем самым $\exp 'x = \exp x$, или $\frac{de^x}{dx} = e^x$.
+	
+	$\blacktriangleleft$
+	$e^{x+h} - e^x = e^x(e^h - 1) = e^x(h + o(h)) = e^xh + o(h)$.
+	
+	Мы воспользовались полученной в примере 39, гл. III, §2, п.4 формулой $e^h - 1 = h + o(h)$ при $h \to 0$.
+	$\blacktriangleright$
+\end{document}

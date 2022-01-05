@@ -1,0 +1,98 @@
+0, ,!,l //Made by Matvey Popov М8О-108Б-20 №26 (edited)
+l,!,<,L
+l,*,<,L
+L,1,<,L 
+L,0,<,L 
+L, ,*,r* 
+r*,*,>,a
+
+a,0,|,f0 
+f0,|,>,f0
+f0,1,>,f0
+f0,0,>,f0
+f0,!,>,f0
+f0, ,0,L0
+L0,1,<,L0
+L0,0,<,L0
+L0,!,<,L0
+L0,|,0,r
+
+a,1,|,f1  
+f1,|,>,f1
+f1,1,>,f1
+f1,0,>,f1
+f1,!,>,f1
+f1, ,1,L1
+L1,1,<,L1
+L1,0,<,L1
+L1,!,<,L1
+L1,|,1,r
+
+a,!,*,l*
+l*,*,<,L*
+L*,0,<,L*
+L*,1,<,L*
+L*,*, ,Rr
+Rr, ,>,RR
+RR,0,>,RR
+RR,1,>,RR
+RR,*,>,RR
+RR, , ,start
+
+r,0,>,a
+r,1,>,a
+
+
+
+start, ,<,Ld 
+Ld,0,<,Ld 
+Ld,1,<,Ld
+Ld, ,*,Ld
+Ld,*,>,ad1
+ad1,1, ,sd1
+ad1,0, ,sd0
+sd0, ,>,Rd0
+sd1, ,>,Rd1
+Rd1,0,>,Rd1
+Rd1,1,>,Rd1
+Rd1, ,<,bd1
+Rd0,0,>,Rd0
+Rd0,1,>,Rd0
+Rd0, ,<,bd0
+bd0,0, ,ld
+bd0,1,>,Rad
+bd0, , ,ad1
+bd1,1, ,ld
+ld, ,<,Ld*
+Ld*,0,<,Ld*
+Ld*,1,<,Ld*
+Ld*,*,>,ad1
+Ld*, ,>,ad1
+bd1,0,>,Rad
+bd1, ,y,endyd
+Rad, ,>,Rd
+Rd, ,n,endnd
+ad1, ,y,endyd
+endyd,y,<,endyd1
+endyd1,0,y,endyd
+endyd1,1,y,endyd
+endyd1, ,y,endyd
+endyd1,*, ,fd
+endnd,n,<,endnd1
+endnd1,0,n,endnd
+endnd1,1,n,endnd
+endnd1, ,n,endnd
+endnd1,*, ,fd
+fd,*, ,fd
+fd, , ,dd
+dd, ,>,dd
+dd,y,>,rd
+dd,n,>,rd
+rd,n, ,rd1
+rd,y, ,rd1
+rd, , ,gd
+rd1, ,>,rd
+gd, ,<,gd
+gd,y,>,kd
+gd,n,>,kd
+kd, , ,kd

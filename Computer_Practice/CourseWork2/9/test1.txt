@@ -1,0 +1,12 @@
+a 10.659 Edgar
+a 10.610 Bull
+a 8.609 Colt
+a 8.607 Penny
+a 8.605 Shelly
+fk 8.603
+p
+sk
+p
+sn
+p
+#
