@@ -1,0 +1,27 @@
+# 20
+    $id    $idq    $dec    $int 
+  $bool    $str       (       ) 
+      +       -       *       / 
+      <       =       >      <= 
+     >=     and     not      or 
+   cond    else      if     let 
+ define display newline    set! 
+
+#
+      S -> PROG #1
+   PROG -> CALCS #2
+      E -> $id #3 |
+           $int #4 |
+           $dec #5 |
+           AREX #6
+   AREX -> HAREX E ) #7
+  HAREX -> ( AROP #8 |
+           HAREX E #9
+   AROP -> + #10
+    SET -> HSET E ) #11
+   HSET -> ( set! $id #12
+  CALCS -> CALC #13 |
+           CALCS CALC #14
+   CALC -> E #15 |
+           SET #16
+

@@ -1,0 +1,28 @@
+# $m21
+   $id   $int      (      ) 
+   define   set! 
+#
+     S -> PROG #1
+  PROG -> CALCS #2 |
+          DEFS #3 |
+          DEFS CALCS #4
+ CALCS -> CALC #5 |
+          CALCS CALC #6
+  CALC -> E #7
+     E -> $id #8 |
+          $int #9 |
+          CPROC #10
+ CPROC -> HCPROC ) #11
+HCPROC -> ( $id #12 |
+          HCPROC E #13
+   SET -> HSET E ) #14
+  HSET -> ( set! $id #15
+   DEF -> PROC #16
+  DEFS -> DEF #17 |
+          DEFS DEF #18
+  PROC -> HPROC E ) #19
+ HPROC -> PCPAR ) #20 |
+          HPROC SET #21
+ PCPAR -> ( define ( $id #22 |
+          PCPAR $id #23
+

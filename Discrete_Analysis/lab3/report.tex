@@ -1,0 +1,151 @@
+\documentclass[12pt]{article}
+
+\usepackage{fullpage}
+\usepackage{multicol,multirow}
+\usepackage{tabularx}
+\usepackage{ulem}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+% \usepackage{array}
+
+\usepackage{listings}
+\usepackage{xcolor}
+
+\usepackage{pgfplots}
+% \pgfplotsset{compat=1.9}
+
+
+% Оригиналный шаблон: http://k806.ru/dalabs/da-report-template-2012.tex
+
+\begin{document}
+
+\section*{Лабораторная работа №\,3 по курсу дискрeтного анализа: Сбаласированные деревья}
+
+Выполнил студент группы М8О-208Б-20 МАИ \textit{Попов Матвей}.
+
+\subsection*{Условие}
+
+% Кратко описывается задача: 
+Для реализации словаря из предыдущей лабораторной работы,
+необходимо провести исследование скорости выполнения и потребления
+оперативной памяти.
+
+\subsection*{gprof}
+
+\subsubsection*{Основная информация}
+
+Утилита gprof позволяет измерить время работы всех функций, методов и операторов
+программы, количество их вызовов и долю от общего времени работы программы в 
+процентах.
+
+\subsubsection*{Команды для работы с утилитой}
+
+Сначала скомпилируем исходную программу с ключом $-pg$:
+
+\begin{lstlisting}
+    g++ lab.cpp -pg -o lab
+\end{lstlisting}
+
+Затем запустим программу, передав ей на ввод файл $test.txt$, в котором 
+содержится по 5000 команд на вставку, поиск и удаление:
+
+\begin{lstlisting}
+    ./lab <test.txt >out.txt
+\end{lstlisting}
+
+Выполнив эту команду, заметим, что кроме файла $out.txt$, в котором содержатся 
+результаты выполнения команд из $test.txt$, появился файл $gmon.out$, в котором
+содержится вся информация, предоставляемая утилитой gprof. Чтобы получить 
+текстовый файл, выполним следующую команду:
+
+\begin{lstlisting}
+    gprof lab gmon.out > profile-data.txt
+\end{lstlisting}
+
+Таким образом, выполнив 3 простые команды, получили текстовый файл с подробной 
+информацией о времени работы и вызовах всех функций и операторов, которые 
+использовались в программе.
+
+\subsubsection*{Результат работы утилиты}
+
+Ниже приведена таблица, в которую перенесены данные из файла $profile-data.txt$,
+полученного с помощью утилиты gprof.
+
+\begin{tabular}{ | c | c | c | c | }
+    \hline
+        \% time & self seconds & calls & name \\ \hline
+        93.33 & 2.09 & 3664224 & IPair::TPair::operator= \\
+        1.34 & 0.03 & 33982 & Clear(char*) \\
+        1.34 & 0.03 & 25233 & IPair::TPair::TPair(IPair::TPair const\&) \\
+        0.89 & 0.02 & 330720 & IPair::operator< \\
+        0.89 & 0.02 & 20000 & ToLower(char*, IPair::TPair\&) \\
+        0.45 & 0.01 & 54943 & IBTree::BinarySearch \\
+        0.45 & 0.01 & 42109 & IPair::operator== \\
+    \hline
+\end{tabular}
+
+Все остальные функции, по данным результатам измерений утилиты gprof, 
+работали примерно 0 секунд, поэтому в таблицу внесены не были. Из полученных 
+данных следует, что большая часть времени работы программы тратится на операцию 
+копирования пары «ключ-значение», это может быть связано с использованием 
+объектов класса $vector$ в узлах дерева.
+
+\subsection*{valgrind}
+
+Valgrind является самым распространённым инструментом для отслеживания утечек 
+памяти и других ошибок, связанных с памятью. Чтобы проверить программу $lab$ 
+на проблемы с памятью, выполним следующую команду:
+
+\begin{lstlisting}
+    valgrind ./lab <test.txt >out.txt
+\end{lstlisting}
+
+В результате выполнения этой команды получаем следующее сообщение:
+
+\begin{lstlisting}
+    ==8733== Process terminating with default action of signal 2 (SIGINT)
+    ==8733==    at 0x4B66075: write (write.c:26)
+    ==8733==    by 0x492777D: std::__basic_file<char>
+    ::xsputn(char const*, long) (in /usr/lib
+    /x86_64-linux-gnu/libstdc++.so.6.0.28)
+    ==8733==    by 0x4966EA0: std::basic_filebuf<char, 
+    std::char_traits<char> >::_M_convert_to_external
+    (char*, long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+    ==8733==    by 0x49672FB: std::basic_filebuf<char,
+     std::char_traits<char> >::overflow(int) (in /usr
+     /lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+    ==8733==    by 0x496505C: std::basic_filebuf<char,
+     std::char_traits<char> >::sync() (in /usr/lib
+     /x86_64-linux-gnu/libstdc++.so.6.0.28)
+    ==8733==    by 0x498D7A2: std::ostream::flush() 
+    (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28)
+    ==8733==    by 0x10CF92: main (in /mnt/c/Home/Prog/DA/lab2/lab)
+    ==8733== 
+    ==8733== HEAP SUMMARY:
+    ==8733==     in use at exit: 266,288 bytes in 9 blocks
+    ==8733==   total heap usage: 27 allocs, 18 frees, 
+    482,064 bytes allocated
+    ==8733== 
+    ==8733== LEAK SUMMARY:
+    ==8733==    definitely lost: 0 bytes in 0 blocks
+    ==8733==    indirectly lost: 0 bytes in 0 blocks
+    ==8733==      possibly lost: 0 bytes in 0 blocks
+    ==8733==    still reachable: 266,288 bytes in 9 blocks
+    ==8733==         suppressed: 0 bytes in 0 blocks
+    ==8733== Rerun with --leak-check=full to see details of leaked memory
+    ==8733== 
+    ==8733== For lists of detected and suppressed errors, rerun with: -s
+    ==8733== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+\end{lstlisting}
+
+С помощью Valgrind обнаружили несколько незначительных ошибок и неосвобождённую память 
+после выполнения программы.
+
+\subsection*{Выводы}
+
+Проделав лабораторную работу, я познакомился с полезной утилитой gprof, 
+необходимой для измерения времени работы программы и отдельных её частей, 
+закрепил навыки работы с утилитой valgrind, а также обнаружил неосвобождённую память в 
+своей программе.
+
+\end{document}
