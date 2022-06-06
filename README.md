@@ -23,3 +23,9 @@
 ### [Логическое программирование](https://github.com/papey08/MAI_skat/tree/main/Logical_Programming)
 
 ### [Теоретическая механика](https://github.com/papey08/MAI_skat/tree/main/Theoretical_Mechanics)
+
+## 4 семестр
+
+### [Дискретный анализ](https://github.com/papey08/MAI_skat/tree/main/Discrete_Analysis)
+
+### [Системы программирования](https://github.com/papey08/MAI_skat/tree/main/Programming_Systems)
