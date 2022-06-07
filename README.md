@@ -22,7 +22,7 @@
 
 ### [Логическое программирование](https://github.com/papey08/MAI_skat/tree/main/Logical_Programming) — какой-то кринж если честно
 
-### [Теоретическая механика](https://github.com/papey08/MAI_skat/tree/main/Theoretical_Mechanics) — тоже кринж
+### [Теоретическая механика](https://github.com/papey08/MAI_skat/tree/main/Theoretical_Mechanics) — тоже кринж (хз как ПМ с этим 2 семестра живёт)
 
 ## 4 семестр
 
