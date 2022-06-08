@@ -16,7 +16,7 @@
 
 ## 3 семестр
 
-### [Объектно-ориентированное программирование](https://github.com/papey08/MAI_skat/tree/main/Object_Oriented_Programming) — классы, наследвание, перегрузки операторов, умные указатели, шаблоны, итераторы, аллокаторы
+### [Объектно-ориентированное программирование](https://github.com/papey08/MAI_skat/tree/main/Object_Oriented_Programming) — классы, наследование, перегрузки операторов, умные указатели, шаблоны, итераторы, аллокаторы
 
 ### [Операционные системы](https://github.com/papey08/MAI_skat/tree/main/Operation_Systems) — процессы, потоки, memory mapping, динамические библиотеки, очереди сообщений
 
