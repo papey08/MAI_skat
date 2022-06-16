@@ -28,4 +28,4 @@
 
 ### [Дискретный анализ](https://github.com/papey08/MAI_skat/tree/main/Discrete_Analysis) — сортировки за линию, сбалансированные деревья, поиск подстроки в строке
 
-### [Системы программирования](https://github.com/papey08/MAI_skat/tree/main/Programming_Systems) — самый лютый кринж
+### [Системы программирования](https://github.com/papey08/MAI_skat/tree/main/Programming_Systems) — самый лютый кринж, везде 20 вариант
