@@ -2,6 +2,8 @@
 
 ## Вариант 29. Создание и заполнение отношений БД фитнес-клуба
 
+Вместе со мной над проектом работали [artemmoroz0v](https://github.com/artemmoroz0v) и [silverfatt](https://github.com/silverfatt)
+
 ## Подробное описание проекта есть в [отчёте](https://github.com/papey08/MAI_skat/blob/main/Databases/cp/docs/report.pdf)
 
 ## Запуск с докером
