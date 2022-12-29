@@ -29,3 +29,11 @@
 ### [Дискретный анализ](https://github.com/papey08/MAI_skat/tree/main/Discrete_Analysis) — сортировки за линию, сбалансированные деревья, поиск подстроки в строке
 
 ### [Системы программирования](https://github.com/papey08/MAI_skat/tree/main/Programming_Systems) — самый лютый кринж, везде 20 вариант
+
+## 5 семестр
+
+### [Дискретный анализ 2 семестр](https://github.com/papey08/MAI_skat/tree/main/Discrete_Analysis_2) — суффиксные деревья, динамическое программирование, жадные алгоритмы, графы, архиватор
+
+### [Базы данных](https://github.com/papey08/MAI_skat/tree/main/Databases) — проектирование баз данных, заполнениие баз данных тестовыми записями, разработка веб-приложения
+
+### [Компьютерная графика](https://github.com/papey08/MAI_skat/tree/main/Computer_Graphics) — аппроксимация, OpenGL, анимации

@@ -1,0 +1,100 @@
+{{ define "data" }}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/public/styles/main.css">
+    <title>Водители</title>
+</head>
+<body>
+  <h1>Управление водителями</h1>
+
+  <h2>Добавление водителя</h2>
+
+  <form action="http://localhost:8080/driver/insert" method="post">
+    <label for="driver_second_name">Фамилия</label>
+    <br>
+    <input type="text"
+           name="driver_second_name"
+           id="driver_second_name"
+           class="input_text"
+           maxlength="30">
+    <br>
+    <label for="driver_name">Имя</label>
+    <br>
+    <input type="text"
+           name="driver_name"
+           id="driver_name"
+           class="input_text"
+           maxlength="30">
+    <br>
+    <label for="driver_third_name">Отчество</label>
+    <br>
+    <input type="text"
+           name="driver_third_name"
+           id="driver_third_name"
+           class="input_text"
+           maxlength="30">
+    <br>
+    <label for="driver_class">Класс</label>
+    <br>
+    <input type="text"
+           name="driver_class"
+           id="driver_class"
+           class="input_text"
+           maxlength="30">
+    <br>
+    <label for="vehicle_sigh">Номер автомобиля</label>
+    <br>
+    <input type="text"
+           name="vehicle_sigh"
+           id="vehicle_sigh"
+           class="input_text"
+           maxlength="9">
+    <br>
+    <input type="submit"
+           value="Добавить"
+           id="driver_submit"
+           class="submit">
+  </form>
+
+  <h2>Удаление водителя</h2>
+
+  <form action="http://localhost:8080/driver/delete" method="post">
+    <label for="driver_id">Введите ID водителя</label>
+    <br>
+    <input type="number"
+           name="driver_id"
+           id="driver_id"
+           class="input_text">
+    <br>
+    <input type="submit"
+           value="Удалить"
+           id="driver_submit_delete"
+           class="submit">
+  </form>
+
+  <h2>Список водителей</h2>
+
+  <table>
+    <th>ID</th>
+    <th>Фамилия</th>
+    <th>Имя</th>
+    <th>Отчество</th>
+    <th>Класс</th>
+    <th>Номер автомобиля</th>
+
+    {{ range . }}
+    <tr>
+      <td>{{ .DriverID }}</td>
+      <td>{{ .DriverSecondName }}</td>
+      <td>{{ .DriverName }}</td>
+      <td>{{ .DriverThirdName }}</td>
+      <td>{{ .DriverClass }}</td>
+      <td>{{ .VehicleSigh }}</td>
+    </tr>
+    {{ end }}
+  </table>
+</body>
+</html>
+{{ end }}

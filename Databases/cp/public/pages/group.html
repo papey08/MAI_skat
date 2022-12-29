@@ -1,0 +1,205 @@
+{{ define "data" }}
+
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="/public/styles/main.css">
+  <link rel="stylesheet" href="/public/styles/position.css">
+  <link rel="stylesheet" href="/public/styles/table.css">
+  <title>Fitness Club Admin Page</title>
+</head>
+
+<body>
+<h1>Управление группами</h1>
+<div class="forms">
+  <h2>Добавление группы</h2>
+  <form action="http://localhost:8080/group/insert" method="post">
+
+    <div class="singleform">
+      <label>Программа</label>
+      <br>
+      <select name="insert_program_id"
+              class="input_field">
+        {{ range .Programs }}
+        <option value={{ .ProgramID }}>{{ .ProgramName }}</option>
+        {{ end }}
+      </select>
+    </div>
+
+    <div class="singleform">
+      <label>Заметки</label>
+      <br>
+      <input type="text"
+             name="insert_notes"
+             class="input_field"
+             maxlength="255">
+    </div>
+
+    <div class="singleform">
+      <label>Тренер</label>
+      <br>
+      <input type="number"
+             name="insert_trainer_id"
+             class="input_field"
+             placeholder="ID тренера">
+    </div>
+
+    <div class="singleform">
+      <label>Макс. кол-во клиентов</label>
+      <br>
+      <input type="number"
+             class="input_field"
+             name="insert_clients_amount">
+    </div>
+
+    <input type="submit"
+           class="submit"
+           value="Добавить">
+
+  </form>
+
+  <h2>Добавление клиента в группу</h2>
+  <form action="http://localhost:8080/group/client/insert" method="post">
+
+    <div class="singleform">
+      <label>ID добавляемого клиента</label>
+      <br>
+      <input type="number"
+             class="input_field"
+             name="client_insert_client_id">
+    </div>
+
+    <div class="singleform">
+      <label>ID группы</label>
+      <br>
+      <input type="number"
+             class="input_field"
+             name="client_insert_group_id">
+    </div>
+
+    <input type="submit"
+           class="submit"
+           value="Подтвердить">
+
+  </form>
+
+  <h2>Удаление клиента из группы</h2>
+  <form action="http://localhost:8080/group/client/delete" method="post">
+
+    <div class="singleform">
+      <label>ID удаляемого клиента</label>
+      <br>
+      <input type="number"
+             class="input_field"
+             name="client_delete_client_id">
+    </div>
+
+    <div class="singleform">
+      <label>ID группы</label>
+      <br>
+      <input type="number"
+             class="input_field"
+             name="client_delete_group_id">
+    </div>
+
+    <input type="submit"
+           class="submit_delete"
+           value="Удалить">
+
+  </form>
+
+  <h2>Удалить группу</h2>
+  <form action="http://localhost:8080/group/delete" method="post">
+
+    <div class="singleform">
+      <label>ID группы:</label>
+      <br>
+      <input type="number"
+             class="input_field"
+             name="delete_group_id">
+    </div>
+
+    <input type="submit"
+           class="submit_delete"
+           value="Удалить">
+
+  </form>
+
+  <h2>Список группы</h2>
+  <form action="http://localhost:8080/group/select" method="post">
+
+    <div class="singleform">
+      <label>Вывести группу</label>
+      <br>
+      <input type="number"
+             name="select_group_id"
+             class="input_field"
+             placeholder="ID группы">
+    </div>
+
+    <input type="submit"
+           class="submit"
+           value="Подтвердить">
+
+  </form>
+</div>
+
+<div class="tables">
+  <h2>Список групп</h2>
+  <table>
+    <th>ID группы</th>
+    <th>ID программы</th>
+    <th>Заметки</th>
+    <th>ID тренера</th>
+    <th>Макс. кол-во клиентов</th>
+
+    {{ range .Groups }}
+    <tr>
+      <td>{{ .GroupID }}</td>
+      <td>{{ .ProgramID }}</td>
+      <td>{{ .Notes }}</td>
+      <td>{{ .TrainerID }}</td>
+      <td>{{ .ClientsAmount }}</td>
+    </tr>
+    {{ end }}
+  </table>
+
+  <br>
+  <br>
+
+  <h2>Список группы</h2>
+  <table>
+    <th>ID</th>
+    <th>Фамилия</th>
+    <th>Имя</th>
+    <th>Отчество</th>
+    <th>Пол</th>
+    <th>Дата рождения</th>
+    <th>Рост</th>
+    <th>Вес</th>
+    <th>Начало абонемента</th>
+    <th>Окончание абонемента</th>
+
+    {{ range .Group }}
+    <tr>
+      <td>{{ .SubscriptionID }}</td>
+      <td>{{ .ClientSecondName }}</td>
+      <td>{{ .ClientName }}</td>
+      <td>{{ .ClientThirdName }}</td>
+      <td>{{ .Sex }}</td>
+      <td>{{ .Birthdate }}</td>
+      <td>{{ .Height }}</td>
+      <td>{{ .Weight }}</td>
+      <td>{{ .SubscriptionBegin }}</td>
+      <td>{{ .SubscriptionEnd }}</td>
+    </tr>
+    {{ end }}
+  </table>
+</div>
+
+</body>
+
+</html>
+{{ end }}

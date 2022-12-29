@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  fitness-club-app:
+    build: ./
+    command: ./fitness-club-app
+    ports:
+      - "8080:8080"
+    depends_on:
+      - fitness-club-db
+
+  fitness-club-db:
+    image: postgres
+    volumes:
+      - ./db_init.sql:/docker-entrypoint-initdb.d/db_init.sql
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=pass
+      - POSTGRES_DB=postgres
+    ports:
+      - "5432:5432"

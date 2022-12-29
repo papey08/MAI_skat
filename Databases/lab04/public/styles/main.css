@@ -1,0 +1,74 @@
+html {
+    background-color: #0e1419;
+}
+
+h1, h2, label, table, .submit {
+    font-family: Helvetica, serif;
+    color: white;
+    margin-left: 2.5%
+}
+
+h1, h2 {
+    margin-top: 50px;
+}
+
+button, .submit {
+    text-align: center;
+    font-size: large;
+    font-family: Helvetica, serif;
+    background-color: #292b2e;
+    border-radius: 5px;
+    border-color: #292b2e;
+    color: white;
+}
+
+button:hover, .submit:hover {
+    background-color: #3f4345;
+    border-color: #3f4345;
+}
+
+.operation_button {
+    float: left;
+    margin-right: 2.5%;
+    height: 77px;
+    width: 30%;
+
+    position: relative;
+    left: 2.5%;
+}
+
+.input_text {
+    background-color: #3f4345;
+    color: white;
+    font-family: Helvetica, serif;
+    margin-left: 2.5%;
+    margin-bottom: 0.5%;
+}
+
+.submit {
+    margin-top: 15px;
+    width: 15%;
+}
+
+label {
+    font-size: medium;
+}
+
+table {
+    border-collapse: separate;
+    border-spacing: 20px 0;
+    border: 1px solid white;
+}
+
+#driver_submit:hover, #voyage_submit:hover, #vehicle_submit:hover {
+    background-color: #4bd759;
+    border-color: #4bd759;
+    color: #0e1419;
+}
+
+#driver_submit_delete:hover, #voyage_submit_delete:hover,
+#vehicle_submit_delete:hover
+{
+    background-color: darkred;
+    border-color: darkred;
+}

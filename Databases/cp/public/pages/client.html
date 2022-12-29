@@ -1,0 +1,253 @@
+{{ define "data" }}
+
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="/public/styles/main.css">
+  <link rel="stylesheet" href="/public/styles/position.css">
+  <link rel="stylesheet" href="/public/styles/table.css">
+  <title>Fitness Club Admin Page</title>
+</head>
+
+<body>
+<h1>Управление клиентами</h1>
+<div class="forms">
+  <h2>Добавление клиента</h2>
+  <form action="http://localhost:8080/client/insert" method="post">
+
+    <div class="singleform">
+      <label>Фамилия</label>
+      <br>
+      <input type="text"
+             name="insert_second_name"
+             class="input_field"
+             maxlength="50">
+    </div>
+
+    <div class="singleform">
+      <label>Имя</label>
+      <br>
+      <input type="text"
+             name="insert_name"
+             class="input_field"
+             maxlength="50">
+    </div>
+
+    <div class="singleform">
+      <label>Отчество</label>
+      <br>
+      <input type="text"
+             name="insert_third_name"
+             class="input_field"
+             maxlength="50">
+    </div>
+
+    <div class="singleform">
+      <label>Пол</label>
+      <br>
+      <input type="radio"
+             name="insert_sex"
+             value="мужской">
+      <label>мужской</label>
+
+      <input type="radio"
+             name="insert_sex"
+             value="женский">
+      <label>женский</label>
+
+      <input type="radio"
+             name="insert_sex"
+             value="другой">
+      <label>другой</label>
+    </div>
+
+    <div class="singleform">
+      <label>Дата рождения</label>
+      <br>
+      <input type="date"
+             class="input_field"
+             name="insert_birthdate">
+    </div>
+
+    <div class="singleform">
+      <label>Рост</label>
+      <br>
+      <input type="text"
+             class="input_field"
+             name="insert_height">
+    </div>
+
+    <div class="singleform">
+      <label>Вес</label>
+      <br>
+      <input type="text"
+             class="input_field"
+             name="insert_weight">
+    </div>
+
+    <div class="singleform">
+      <label>Начало подписки</label>
+      <br>
+      <input type="date"
+             class="input_field"
+             name="insert_subscription_begin">
+    </div>
+
+    <div class="singleform">
+      <label>Окончание подписки</label>
+      <br>
+      <input type="date"
+             class="input_field"
+             name="insert_subscription_end">
+    </div>
+
+    <input type="submit"
+           class="submit"
+           value="Добавить">
+
+  </form>
+  <h2>Продлить абонемент</h2>
+  <form action="http://localhost:8080/client/update/subscription" method="post">
+
+    <div class="singleform">
+      <label>ID клиента:</label>
+        <br>
+      <input type="number"
+             class="input_field"
+             name="update_subscription_id">
+    </div>
+
+    <div class="singleform">
+      <label>Новая дата абонемента:</label>
+        <br>
+      <input type="date"
+             class="input_field"
+             name="update_subscription_subscription_end">
+    </div>
+
+
+    <input type="submit"
+           class="submit"
+           value="Подтвердить">
+
+  </form>
+
+  <h2>Изменить рост/вес</h2>
+  <form action="http://localhost:8080/client/update/height&weight" method="post">
+
+    <div class="singleform">
+      <label>ID клиента</label>
+        <br>
+      <input type="number"
+             class="input_field"
+             name="update_height&weight_id">
+    </div>
+
+    <div class="singleform">
+      <label>Новый рост</label>
+        <br>
+      <input type="text"
+             class="input_field"
+             name="update_height&weight_height">
+    </div>
+
+    <div class="singleform">
+      <label>Новый вес</label>
+        <br>
+      <input type="text"
+             class="input_field"
+             name="update_height&weight_weight">
+    </div>
+
+    <input type="submit"
+           class="submit"
+           value="Подтвердить">
+
+  </form>
+
+  <h2>Удалить клиента</h2>
+  <form action="http://localhost:8080/client/delete" method="post">
+
+    <div class="singleform">
+      <label>ID клиента:</label>
+        <br>
+      <input type="number"
+             class="input_field"
+             name="delete_id">
+    </div>
+
+    <input type="submit"
+           class="submit_delete"
+           value="Удалить">
+
+  </form>
+</div>
+<div class="tables">
+  <h2>Список клиентов</h2>
+  <table>
+    <th>ID</th>
+    <th>Фамилия</th>
+    <th>Имя</th>
+    <th>Отчество</th>
+    <th>Пол</th>
+    <th>Дата рождения</th>
+    <th>Рост</th>
+    <th>Вес</th>
+    <th>Начало абонемента</th>
+    <th>Окончание абонемента</th>
+
+    {{ range .Clients }}
+    <tr>
+      <td>{{ .SubscriptionID }}</td>
+      <td>{{ .ClientSecondName }}</td>
+      <td>{{ .ClientName }}</td>
+      <td>{{ .ClientThirdName }}</td>
+      <td>{{ .Sex }}</td>
+      <td>{{ .Birthdate }}</td>
+      <td>{{ .Height }}</td>
+      <td>{{ .Weight }}</td>
+      <td>{{ .SubscriptionBegin }}</td>
+      <td>{{ .SubscriptionEnd }}</td>
+    </tr>
+    {{ end }}
+  </table>
+
+  <br>
+  <br>
+
+  <h2 id="subscription_end">Список клиентов c истёкшим абонементом</h2>
+  <table>
+    <th>id</th>
+    <th>Фамилия</th>
+    <th>Имя</th>
+    <th>Отчество</th>
+    <th>Пол</th>
+    <th>Дата рождения</th>
+    <th>Рост</th>
+    <th>Вес</th>
+    <th>Начало абонемента</th>
+    <th>Окончание абонемента</th>
+
+    {{ range .UnsubscribedClients }}
+    <tr>
+      <td>{{ .SubscriptionID }}</td>
+      <td>{{ .ClientSecondName }}</td>
+      <td>{{ .ClientName }}</td>
+      <td>{{ .ClientThirdName }}</td>
+      <td>{{ .Sex }}</td>
+      <td>{{ .Birthdate }}</td>
+      <td>{{ .Height }}</td>
+      <td>{{ .Weight }}</td>
+      <td>{{ .SubscriptionBegin }}</td>
+      <td>{{ .SubscriptionEnd }}</td>
+    </tr>
+    {{ end }}
+  </table>
+</div>
+
+</body>
+
+</html>
+{{ end }}

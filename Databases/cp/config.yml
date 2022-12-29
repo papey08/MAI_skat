@@ -1,0 +1,9 @@
+port: "8080"
+
+db:
+  host: "fitness-club-db"
+  port: "5432"
+  user: "postgres"
+  dbname: "postgres"
+  password: "pass"
+  sslmode: "disable"

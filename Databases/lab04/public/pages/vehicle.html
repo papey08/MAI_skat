@@ -1,0 +1,85 @@
+{{ define "data" }}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/public/styles/main.css">
+    <title>Транспорт</title>
+</head>
+<body>
+  <h1>Управление транспортом</h1>
+
+  <h2>Добавление транспорта</h2>
+
+  <form action="http://localhost:8080/vehicle/insert" method="post">
+    <label for="vehicle_sigh">Номер</label>
+    <br>
+    <input type="text"
+           name="vehicle_sigh"
+           id="vehicle_sigh"
+           class="input_text"
+           maxlength="9">
+    <br>
+    <label for="model">Модель</label>
+    <br>
+    <input type="text"
+           name="model"
+           id="model"
+           class="input_text"
+           maxlength="30">
+    <br>
+    <label for="type_id">Тип</label>
+    <br>
+    <input type="number"
+           name="type_id"
+           id="type_id"
+           class="input_text">
+    <br>
+    <label for="price_coeff">Коэффициент</label>
+    <br>
+    <input type="text"
+           name="price_coeff"
+           id="price_coeff"
+           class="input_text">
+    <br>
+    <input type="submit"
+           value="Добавить"
+           id="vehicle_submit"
+           class="submit">
+  </form>
+
+  <h2>Удаление транспорта</h2>
+  <form action="http://localhost:8080/vehicle/delete" method="post">
+    <label for="vehicle_sigh_delete">Введите номер</label>
+    <br>
+    <input type="text"
+           name="vehicle_sigh_delete"
+           id="vehicle_sigh_delete"
+           class="input_text">
+    <br>
+    <input type="submit"
+           value="Удалить"
+           id="vehicle_submit_delete"
+           class="submit">
+  </form>
+
+  <h2>Список транспорта</h2>
+
+  <table>
+    <th>Номер</th>
+    <th>Модель</th>
+    <th>Тип</th>
+    <th>Коэффициент</th>
+
+    {{ range . }}
+    <tr>
+      <td>{{ .VehicleSigh }}</td>
+      <td>{{ .Model }}</td>
+      <td>{{ .TypeID }}</td>
+      <td>{{ .PriceCoeff }}</td>
+    </tr>
+    {{ end }}
+  </table>
+</body>
+</html>
+{{ end }}

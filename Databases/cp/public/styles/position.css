@@ -1,0 +1,14 @@
+.forms {
+  width: 22.5%;
+  float: left;
+  margin-left: 2.5%;
+}
+
+.tables {
+  width: 70%;
+  float: right;
+}
+
+.singleform {
+  margin-bottom: 2.5%;
+}

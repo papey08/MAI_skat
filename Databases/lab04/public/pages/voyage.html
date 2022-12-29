@@ -1,0 +1,98 @@
+{{ define "data" }}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/public/styles/main.css">
+    <title>Рейсы</title>
+</head>
+<body>
+  <h1>Управление рейсами</h1>
+
+  <h2>Добавление рейса</h2>
+
+  <form action="http://localhost:8080/voyage/insert" method="post">
+    <label for="driver_id">ID водителя</label>
+    <br>
+    <input type="number"
+           name="driver_id"
+           id="driver_id"
+           class="input_text">
+    <br>
+    <label for="point_begin">Откуда</label>
+    <br>
+    <input type="text"
+           name="point_begin"
+           id="point_begin"
+           class="input_text"
+           maxlength="50">
+    <br>
+    <label for="point_end">Куда</label>
+    <br>
+    <input type="text"
+           name="point_end"
+           id="point_end"
+           class="input_text"
+           maxlength="50">
+    <br>
+    <label for="date_begin">Дата начала</label>
+    <br>
+    <input type="date"
+           name="date_begin"
+           id="date_begin"
+           class="input_text">
+    <br>
+    <label for="date_end">Дата окончания</label>
+    <br>
+    <input type="date"
+           name="date_end"
+           id="date_end"
+           class="input_text">
+    <br>
+    <input type="submit"
+           value="Добавить"
+           id="voyage_submit"
+           class="submit">
+  </form>
+
+  <h2>Удаление рейса</h2>
+
+  <form action="http://localhost:8080/voyage/delete" method="post">
+    <label for="voyage_id">Введите ID рейса</label>
+    <br>
+    <input type="number"
+           name="voyage_id"
+           id="voyage_id"
+           class="input_text">
+
+    <br>
+    <input type="submit"
+           value="Удалить"
+           id="voyage_submit_delete"
+           class="submit">
+  </form>
+
+  <h2>Список рейсов</h2>
+
+  <table>
+    <th class="table">ID рейса</th>
+    <th class="table">ID водителя</th>
+    <th class="table">Откуда</th>
+    <th class="table">Куда</th>
+    <th class="table">Дата начала</th>
+    <th class="table">Дата окончания</th>
+
+    {{ range . }}
+    <tr class="table">
+      <td>{{ .VoyageID }}</td>
+      <td>{{ .DriverID }}</td>
+      <td>{{ .PointBegin }}</td>
+      <td>{{ .PointEnd }}</td>
+      <td>{{ .DateBegin }}</td>
+      <td>{{ .DateEnd }}</td>
+    </tr>
+    {{ end }}
+  </table>
+</body>
+</html>
+{{ end }}

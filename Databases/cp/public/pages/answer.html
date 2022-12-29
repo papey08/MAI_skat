@@ -1,0 +1,27 @@
+{{ define "data" }}
+
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="/public/styles/main.css">
+  <title>Fitness Club Admin Page</title>
+</head>
+
+<body>
+  <h1>{{ .Res }}</h1>
+
+  <p>{{ .Ans }}</p>
+
+  <form>
+    <input type="button"
+           value="Вернуться"
+           id="answer_button"
+           onclick="history.back()">
+  </form>
+
+</body>
+
+</html>
+{{ end }}

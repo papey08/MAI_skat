@@ -1,0 +1,220 @@
+{{ define "data" }}
+
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="/public/styles/main.css">
+  <link rel="stylesheet" href="/public/styles/position.css">
+  <link rel="stylesheet" href="/public/styles/table.css">
+  <title>Fitness Club Admin Page</title>
+</head>
+
+<body>
+  <h1>Управление расписанием</h1>
+
+  <div class="forms">
+    <h2>Добавление расписания</h2>
+    <form action="http://localhost:8080/timetable/insert" method="post">
+
+      <div class="singleform">
+        <label>Группа</label>
+        <br>
+        <input type="number"
+               class="input_field"
+               name="insert_group_id"
+               placeholder="ID группы">
+      </div>
+
+      <div class="singleform">
+        <label>День недели</label>
+        <br>
+        <select name="insert_weekday"
+                class="input_field">
+          <option value="1" selected>Понедельник</option>
+          <option value="2" selected>Вторник</option>
+          <option value="3" selected>Среда</option>
+          <option value="4" selected>Четверг</option>
+          <option value="5" selected>Пятница</option>
+          <option value="6" selected>Суббота</option>
+          <option value="7" selected>Воскресенье</option>
+        </select>
+      </div>
+
+      <div class="singleform">
+        <label>Время начала</label>
+        <br>
+        <select name="insert_training_time"
+                class="input_field">
+          <option value="13:00:00" selected>13:00</option>
+          <option value="14:45:00" selected>14:45</option>
+          <option value="16:30:00" selected>16:30</option>
+          <option value="18:15:00" selected>18:15</option>
+          <option value="20:00:00" selected>20:00</option>
+        </select>
+      </div>
+
+      <input type="submit"
+             class="submit"
+             value="Добавить">
+
+    </form>
+
+    <h2>Расписание группы</h2>
+    <form action="http://localhost:8080/timetable/select/by_group" method="post">
+
+      <div class="singleform">
+        <label>Вывести расписание группы</label>
+        <br>
+        <input type="number"
+               name="select_group_id"
+               class="input_field"
+               placeholder="ID группы">
+      </div>
+
+      <input type="submit"
+             class="submit"
+             value="Подтвердить">
+
+    </form>
+
+    <h2>Расписание программы</h2>
+    <form action="http://localhost:8080/timetable/select/by_program" method="post">
+
+      <div class="singleform">
+        <label>Вывести расписание программы</label>
+        <br>
+        <input type="number"
+               name="select_program_id"
+               class="input_field"
+               placeholder="ID программы">
+      </div>
+
+      <input type="submit"
+             class="submit"
+             value="Подтвердить">
+
+    </form>
+
+    <h2>Расписание тренера</h2>
+    <form action="http://localhost:8080/timetable/select/by_trainer" method="post">
+
+      <div class="singleform">
+        <label>Вывести расписание тренера</label>
+        <br>
+        <input type="number"
+               name="select_trainer_id"
+               class="input_field"
+               placeholder="ID тренера">
+      </div>
+
+      <input type="submit"
+             class="submit"
+             value="Подтвердить">
+
+    </form>
+
+    <h2>Удалить расписание</h2>
+    <form action="http://localhost:8080/timetable/delete" method="post">
+
+      <div class="singleform">
+        <label>Группа</label>
+        <br>
+        <input type="number"
+               class="input_field"
+               name="insert_group_id"
+               placeholder="ID группы">
+      </div>
+
+      <div class="singleform">
+        <label>День недели</label>
+        <br>
+        <select name="insert_weekday"
+                class="input_field">
+          <option value="Понедельник" selected>Понедельник</option>
+          <option value="Вторник" selected>Вторник</option>
+          <option value="Среда" selected>Среда</option>
+          <option value="Четверг" selected>Четверг</option>
+          <option value="Пятница" selected>Пятница</option>
+          <option value="Суббота" selected>Суббота</option>
+          <option value="Воскресенье" selected>Воскресенье</option>
+        </select>
+      </div>
+
+      <div class="singleform">
+        <label>Время начала</label>
+        <br>
+        <select name="insert_training_time"
+                class="input_field">
+          <option value="13:00:00" selected>13:00</option>
+          <option value="14:45:00" selected>14:45</option>
+          <option value="16:30:00" selected>16:30</option>
+          <option value="18:15:00" selected>18:15</option>
+          <option value="20:00:00" selected>20:00</option>
+        </select>
+      </div>
+
+      <input type="submit"
+             class="submit_delete"
+             value="Удалить">
+
+    </form>
+  </div>
+
+  <div class="tables">
+    <h2>Расписание группы</h2>
+    <table>
+      <th>ID</th>
+      <th>День недели</th>
+      <th>Время</th>
+
+      {{ range .ByGroup }}
+      <tr>
+        <td>{{ .GroupID }}</td>
+        <td>{{ .Weekday }}</td>
+        <td>{{ .TrainingTime }}</td>
+      </tr>
+      {{ end }}
+    </table>
+
+    <br>
+    <br>
+
+    <h2>Расписание программы</h2>
+    <table>
+      <th>ID</th>
+      <th>День недели</th>
+      <th>Время</th>
+
+      {{ range .ByProgram }}
+      <tr>
+        <td>{{ .GroupID }}</td>
+        <td>{{ .Weekday }}</td>
+        <td>{{ .TrainingTime }}</td>
+      </tr>
+      {{ end }}
+    </table>
+
+    <br>
+    <br>
+
+    <h2>Расписание тренера</h2>
+    <table>
+      <th>ID</th>
+      <th>День недели</th>
+      <th>Время</th>
+
+      {{ range .ByTrainer }}
+      <tr>
+        <td>{{ .GroupID }}</td>
+        <td>{{ .Weekday }}</td>
+        <td>{{ .TrainingTime }}</td>
+      </tr>
+      {{ end }}
+    </table>
+  </div>
+</body>
+
+</html>
+{{ end }}
