@@ -37,3 +37,15 @@
 ### [Базы данных](https://github.com/papey08/MAI_skat/tree/main/Databases) — проектирование баз данных, заполнениие баз данных тестовыми записями, разработка веб-приложения
 
 ### [Компьютерная графика](https://github.com/papey08/MAI_skat/tree/main/Computer_Graphics) — аппроксимация, OpenGL, анимации
+
+## 6 семестр
+
+### [Искусственный интеллект](https://github.com/papey08/MAI_skat/tree/main/Artifical_Intelligence) — экспертная система, фреймворк для ML, классификация изображений, генерация текстов
+
+### [Функциональное программирование](https://github.com/papey08/MAI_skat/tree/main/Functional_Programming) — везде 20 вариант
+
+### [Численные методы](https://github.com/papey08/MAI_skat/tree/main/Numerical_Methods) — очень много перечислять, везде 20 вариант
+
+### [Криптография](https://github.com/papey08/MAI_skat/tree/main/Cryptography) — какой-то кринж если честно
+
+### [Олимпиадное программирование](https://github.com/papey08/MAI_skat/tree/main/Olympiad_Programming_2) — полнейший рандом
