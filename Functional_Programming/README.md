@@ -18,4 +18,4 @@ Task 3:
 
 ## lab3 — язык программирования «Чич»
 
-Вместе со мной над лабой работали @Yannikupy и @usernameMAI
+Вместе со мной над лабой работали [Yannikupy](https://github.com/Yannikupy) и [usernameMAI](https://github.com/usernameMAI)
