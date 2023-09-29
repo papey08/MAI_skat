@@ -1,0 +1,7 @@
+version: "3"
+services:
+  flights-delay-bot:
+    build: .
+    image: flights-delay-bot-image
+    container_name: flights-delay-bot-container
+    restart: always
