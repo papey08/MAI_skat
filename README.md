@@ -49,3 +49,15 @@
 ### [Криптография](https://github.com/papey08/MAI_skat/tree/main/Crypto) — какой-то кринж если честно
 
 ### [Олимпиадное программирование](https://github.com/papey08/MAI_skat/tree/main/Olymp2) — полнейший рандом
+
+### [ДПО](https://github.com/papey08/MAI_skat/tree/main/DSK) — Предсказание вероятности задержки рейсов в аэропорту
+
+## 7 семестр
+
+### [Программирование графических процессоров](https://github.com/papey08/MAI_skat/tree/main/PGP) — CUDA, работа с изображениями, графикой и мартицами
+
+### [Нейроинформатика](https://github.com/papey08/MAI_skat/tree/main/NI) — везде 21 вариант
+
+### [Численные методы 2 семестр](https://github.com/papey08/MAI_skat/tree/main/NM2) — решение урматов, везде 1 вариант
+
+### [Олимпиадное программирование](https://github.com/papey08/MAI_skat/tree/main/Olymp3) — полнейший рандом
