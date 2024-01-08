@@ -27,7 +27,7 @@ every single member is constant now so calculating of the whole series is
 $O(n)$ which is the way better than $O(n^2)$ of the naive method. 
 
 
-The result of my F# program [taylor.fsx](https://github.com/MAILabs-Edu-2023/fp-lab1-papey08/blob/main/taylor.fsx)
+The result of my F# program [taylor.fsx](taylor.fsx)
 is the following table:
 
 | x    | Builtin  | Smart Taylor | # terms | Dumb Taylor | # terms |
@@ -80,7 +80,7 @@ $$f'(x) = 0.2x - \ln x - 1$$
 $$f'(x) = 0.125(3\cos4x + 5)(\cos x)^{-6}$$
 $$f'(x) = {0.45x^2\over \sqrt{1 - 0.3x^3}} - {1\over \sqrt{1 - x^2}}$$
 
-The result of my F# program [equations.fsx](https://github.com/MAILabs-Edu-2023/fp-lab1-papey08/blob/main/equations.fsx)
+The result of my F# program [equations.fsx](equations.fsx)
 is the following table:
 
 |# |Bisection|Iterations|Newton |

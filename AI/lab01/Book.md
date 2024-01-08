@@ -1,6 +1,6 @@
 # Обещание Арии
 
-![cover](https://github.com/MAILabs-Edu-2023/ai-lab-1-popov-zubko-borisov/blob/main/images/cover.jpg)
+![cover](images/cover.jpg)
 
 ## Глава 1
 
@@ -45,7 +45,7 @@
 теперь она и её сестра остались одни в опасном постапокалиптическом мире. Единственное, что 
 им оставалось делать, это выживать.
 
-![aria_and_house](https://github.com/MAILabs-Edu-2023/ai-lab-1-popov-zubko-borisov/blob/main/images/aria_and_house.jpg)
+![aria_and_house](images/aria_and_house.jpg)
 
 ## Глава 2
 
@@ -87,7 +87,7 @@
 сдаваться. У неё была сестра, её навыки и её решимость, и она знала, что с этими вещами она 
 может противостоять всему, что бросает ей новый мир.
 
-![injured_kira](https://github.com/MAILabs-Edu-2023/ai-lab-1-popov-zubko-borisov/blob/main/images/injured_kira.jpg)
+![injured_kira](images/injured_kira.jpg)
 
 ## Глава 3
 
@@ -173,7 +173,7 @@
 взглядами, а затем поползли на звук. Подойдя поближе, они увидели группу людей, 
 сгрудившихся вокруг костра, с мрачными и решительными лицами.
 
-![squad](https://github.com/MAILabs-Edu-2023/ai-lab-1-popov-zubko-borisov/blob/main/images/squad.jpg)
+![squad](images/squad.jpg)
 
 Сердце Арии подпрыгнуло. Это могло быть их шансом найти помощь, может быть, даже найти 
 своего отца.
@@ -231,7 +231,7 @@
 Когда они подошли к лагерю рейдеров, сердце Арии забилось от предвкушения. Но подойдя 
 поближе, они увидели то, от чего у них похолодела кровь.
 
-![raider_bodies](https://github.com/MAILabs-Edu-2023/ai-lab-1-popov-zubko-borisov/blob/main/images/raider_bodies.jpg)
+![raider_bodies](images/raider_bodies.jpg)
 
 На поляне валялись трупы жертв жестокого нападения. Арии стало плохо, когда она увидела 
 искривленные конечности и разорванную плоть, свидетельство жестокой битвы.
@@ -244,7 +244,7 @@
 Глаза рейдера распахнулись, и он посмотрел на них с затравленным выражением лица. — 
 «Животное-мутант», — пробормотал он. «Появился из ниоткуда. У нас не было шансов».
 
-![boar](https://github.com/MAILabs-Edu-2023/ai-lab-1-popov-zubko-borisov/blob/main/images/boar.jpg)
+![boar](images/boar.jpg)
 
 Сердце Арии упало, когда она услышала слова рейдера. Они прошли весь этот путь зря. Но 
 затем рейдер снова заговорил, его голос был слабым, но настойчивым.
@@ -287,7 +287,7 @@
 
 Джейк привел их к скрытому входу, и они проскользнули внутрь лагеря.
 
-![raider_camp](https://github.com/MAILabs-Edu-2023/ai-lab-1-popov-zubko-borisov/blob/main/images/raider_camp.jpg)
+![raider_camp](images/raider_camp.jpg)
 
 По мере того, как они продвигались вглубь комплекса, звуки мутанта становились всё громче. 
 Ария чувствовала, как её сердце колотится от страха и предвкушения.
@@ -296,7 +296,7 @@
 голоса выживших пленных. Среди них Ария услышала своего отца. Она хотела было броситься к 
 двери, но её прервал дикий рёв мутанта сзади.
 
-![hall](https://github.com/MAILabs-Edu-2023/ai-lab-1-popov-zubko-borisov/blob/main/images/hall.jpg)
+![hall](images/hall.jpg)
 
 Отряд обернулся. Мутант был там, рыча и огрызаясь, приближаясь к ним.
 
@@ -316,7 +316,7 @@
 
 ## Глава 7
 
-![father](https://github.com/MAILabs-Edu-2023/ai-lab-1-popov-zubko-borisov/blob/main/images/father.jpg)
+![father](images/father.jpg)
 
 "Папа!" — воскликнула Ария, бросаясь в его объятия.
 

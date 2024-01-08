@@ -10,10 +10,10 @@
 
 Анимировать систему, изображённую на рисунке:
 
-![image](https://user-images.githubusercontent.com/81183518/148177562-0c87a2bb-07a3-47c7-992c-f9b158e36f42.png)
+![image](.img/img01.png)
 
 ## Лабораторная работа №3-4 (Вариант 24)
 
 Анимировать систему из лабраторной работы №2, согласно уравнению движения:
 
-![image](https://user-images.githubusercontent.com/81183518/148178230-be7c2c49-8392-4426-84b5-4386dc927f00.png)
+![image](.img/img02.png)
