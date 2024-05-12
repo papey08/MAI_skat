@@ -1,4 +1,4 @@
-#include <stdio.h> // Матвей Попов М8О-108Б-20 Вариант 6 №1
+#include <stdio.h>
 
 int check(int a)
 {

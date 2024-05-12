@@ -19,7 +19,6 @@ public:
  const tGramma& getGramma()const{return gr;}
 
 private:
-// блокировать копирующие функции
  tParser(const tParser& );
  tParser& operator=(const tParser& );
 
@@ -28,7 +27,6 @@ private:
  tLR                lr;
  std::string        ferror_message;
 
-// функция 
  tGramma::tSymb getTerm();
 
 };
@@ -37,13 +35,10 @@ inline tGramma::tSymb tParser::getTerm(){
  std::string token=lex.GetToken();
  tGramma::tSymb term = gr.encode(token);
 
-//  из токена $id извлекаются ключевые слова
  if(token == "$id"){
    std::string ident = lex.GetLexeme();
-   tGramma::tSymb keyword=gr.encode(ident);//поиск в алфавите
-// если идентификатор найден и является терминалом,
+   tGramma::tSymb keyword=gr.encode(ident);
    if(keyword && gr.terminal(keyword))
-//                        это ключевое слово
                           term = keyword;
   }
  return term;

@@ -33,7 +33,6 @@ protected:
  std::string  fobject;
  virtual void init(){}
 
-// атрибуты
  struct tSA{
   std::string line;
   std::string name;
@@ -63,14 +62,12 @@ protected:
 private:
  tGramma            gr;
  tLR                lr;
- std::vector<tSA> ast;// стeк атрибутов
+ std::vector<tSA> ast;
 
  tBC(const tBC& );
  tBC& operator=(const tBC& );
  tGramma::tSymb getTerm();
 
-// таблица указателей на 
-// семантические подпрограмммы
  typedef int(tBC::* tSemPointer)();
  std::vector<tSemPointer> links;
 
@@ -79,7 +76,6 @@ private:
                            return 0;
   tSemPointer sptr=links[production];
   return sptr ? 
-//   вызов функции класса через указатель
                 (this->*sptr)()
               : 0;
  }
@@ -109,7 +105,6 @@ private:
   ,&tBC::p106,&tBC::p107,&tBC::p108,&tBC::p109,&tBC::p110
   };
      links =
-//  Вектор конструируется из массива
     std::vector<tSemPointer>(tmp, tmp +
            sizeof(tmp)/sizeof(tSemPointer));
  }

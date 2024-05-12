@@ -6,73 +6,53 @@
 
 class tFSM{
 public:
-//  типы
   typedef char tSymbol;
   typedef unsigned char tState;
   typedef std::set<tState> tStateSet;
-// конструктор
-  tFSM(){}; //создает "пустой" автомат
-// функции-члены
-//     добавл€ет одну команду (from,c)->to
+  tFSM(){};
   void add(tState from, tSymbol c, tState to);
-  void final(tState st);//включает одно состо€ние
-//                      во множество заключительных
-  int  apply(const tSymbol* input);//примен€ет автомат
-//                                к входной цепочке
+  void final(tState st);
+  int  apply(const tSymbol* input);
 
-  size_t size()const{return table.size();}//выдает
-//       размер (количество состо€ний) автомата
+  size_t size()const{return table.size();}
 
 private:
-// представление детерминированного конечного
-//            автомата
   typedef std::map<tSymbol,tState> tTransMap;
   typedef std::vector<tTransMap> tStateTable;
 
-  tStateTable 	table;  //таблица состо€ний
-  tStateSet 	finals; //множество заключитеьных
-                        // состо€ний
+  tStateTable 	table;
+  tStateSet 	finals;
 };
-// функции-помощники
   void addstr(tFSM& fsm,
               tFSM::tState from, const tFSM::tSymbol *str,
               tFSM::tState to);
   void addrange(tFSM& fsm,
                 tFSM::tState from, tFSM::tSymbol first,
                 tFSM::tSymbol last, tFSM::tState to);
-//------------------------------------------------------
-//        –≈јЋ»«ј÷»я
 inline void tFSM::add(tState from,tSymbol c,tState to){
   size_t sz=1+(from > to ? from : to);//1+max(from,to)
-  if (sz > table.size())table.resize(sz);//увеличивает
-//                 размер вектора до sz
-  table[from][c] = to; //два перегруженных оператора []:
-                     //один дл€ vector, другой дл€ map.
+  if (sz > table.size())table.resize(sz);
+  table[from][c] = to;
 }
 
 inline void tFSM::final(tState st){finals.insert(st);}
 
 inline int tFSM::apply(const tSymbol* input){
-  if(table.empty()) return 0;// пуста€ таблица
-//                              состо€ний
-  tState state=0; //начальное состо€ние
+  if(table.empty()) return 0;
+  tState state=0;
   int accepted=0;
 
-// цикл прохода по входной цепочке
   while (*input){
-    tTransMap::iterator iter;// итератор
-//                              контейнера map
-    tTransMap &trans=table[state];// ссылка на таблицу 
-//                         переходов из состо€ни€ state
+    tTransMap::iterator iter;
+    tTransMap &trans=table[state];
 
     if ((iter=trans.find(*input))==
-                     trans.end()) break;// нет перехода
+                     trans.end()) break;
 
-    state = iter->second; //новое состо€ние
+    state = iter->second;
     ++accepted;
     ++input;
-  }//конец цикла
-//          состо€ние не заключительное?
+  }
   return(finals.count(state)==0)? 0 : accepted;
 }
 

@@ -17,13 +17,10 @@ tGramma::tSymb tBC::getTerm(){
  std::string token=lex.GetToken();
  tGramma::tSymb term = gr.encode(token);
 
-//  из токена $id извлекаютс€ ключевые слова
  if(token == "$id"){
    std::string ident = lex.GetLexeme();
-   tGramma::tSymb keyword=gr.encode(ident);//поиск в алфавите
-// если идентификатор найден и €вл€етс€ терминалом,
+   tGramma::tSymb keyword=gr.encode(ident);
    if(keyword && gr.terminal(keyword))
-//                        это ключевое слово
                           term = keyword;
   }
  return term;
@@ -53,7 +50,6 @@ int tBC::rewrite(const char* source_name){
    tSA atr;
 //+++++++++++++++++++
   if(lr.size()==0){
-// испорчены управл€ющие таблицы
     return 1;
    }
    ferror_message.clear();
@@ -69,7 +65,7 @@ int tBC::rewrite(const char* source_name){
    tState state = 0;
    tState next = 0;
    const tSymb start = gr.getStart();
-   tSymb term = 1;// маркер
+   tSymb term = 1;
    stack.push_back(term);
    states.push_back(state);
    ast.push_back(atr);
@@ -89,7 +85,7 @@ int tBC::rewrite(const char* source_name){
       break;
      }
 
-     if(next>0){//перенос
+     if(next>0){
        state = next;
        stack.push_back(term);
        states.push_back(state);
@@ -109,8 +105,7 @@ int tBC::rewrite(const char* source_name){
                     break;
                     }
          continue;
-     }//перенос
-//свертка
+     }
       tGramma::tRule descr = tLR::unpack(next);
       const tGramma::tAlt& alt = gr.getAlt(descr);
       size_t k = alt.rp.size();
@@ -123,11 +118,9 @@ int tBC::rewrite(const char* source_name){
   if(PARSER_DEBUG)
         out_prod(cout,gr,descr);
 
-// заменить основу символом левой части
       stack.push_back(left);
       states.push_back(state);
 //+++++++++++++++++++++++++++++++++++++++++++++++++
-// вызов семантической подпрограммы       	//+
   S1=S2=S3=S4=S5=S6=0;
   int base = ast.size()-k;
   switch(k){
@@ -142,10 +135,9 @@ int tBC::rewrite(const char* source_name){
   --k;						//+
    for(int i=0; i< k; ++i) ast.pop_back();	//+
 //+++++++++++++++++++++++++++++++++++++++++++++++++
-// проверить условие допустимости цепочки
       if(stack.size() == 2 &&
          left == start &&
-         term == 1){// маркер коца
+         term == 1){
 //++++++++++++++++++++++++++++++++++++
           fobject = ast.back().obj;//+
 //++++++++++++++++++++++++++++++++++++

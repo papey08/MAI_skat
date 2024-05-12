@@ -14,12 +14,11 @@ int main(){
    cout << "\nSource>";
    *linebuf = 0;
    cin.getline(linebuf,1000);
-   if(*linebuf == 0) break; //завершение работы
+   if(*linebuf == 0) break;
    string source_name = string(linebuf) + ".ss";
    bool file=false;
    {
     ifstream tmp(source_name.c_str());
-// строка ввода похожа на имя файла
     if(tmp) file = true;
    }
    if(!file){
@@ -29,8 +28,7 @@ int main(){
      }
    cout << "\nSource file name:"
         << source_name << endl;
-//  распечатать исходный текст с номерами строк
-   {// начало блока
+   {
     ifstream tmp(source_name.c_str());
     int linecount=0;
     while(tmp){
@@ -39,7 +37,7 @@ int main(){
      cout<< setw(4)<< ++linecount<<"|"<< linebuf<<endl;
      }//while(tmp)...
      cout<<"_________________\n";
-   }// конец блока
+   }
    if(!lex.Begin(source_name.c_str())){
     cout << "Can't open file "<< source_name <<endl;
     continue;

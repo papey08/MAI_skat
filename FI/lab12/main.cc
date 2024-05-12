@@ -1,4 +1,4 @@
-#include <stdio.h> // Попов Матвей ЛР №12 Вариант 4
+#include <stdio.h>
 
 int main()
 {

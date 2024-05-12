@@ -62,7 +62,6 @@ int main()
     string source_name = string(name) + ".ss";
     ifstream tmp(source_name.c_str());
     if(!tmp) break;
-// строка ввода похожа на имя файла
     file = true;
     bc.PARSER_DEBUG = false;
    }while(false);
@@ -77,7 +76,7 @@ int main()
 
    cout << "Source:"<<
             source_name<<endl;
-  {// начало блока распечатки файла
+  {
     ifstream fsource(source_name.c_str());
     int linecount=0;
     while(fsource){
@@ -87,7 +86,7 @@ int main()
                               buf<<endl;
      }//while(fsource)...
      cout<<"_________________\n";
-   }// конец блока
+   }
 
    int res = bc.rewrite(source_name.c_str());
    if(res==0){

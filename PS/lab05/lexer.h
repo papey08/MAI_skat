@@ -4,12 +4,9 @@
 #include "baselexer.h"
 class tLexer:public tBaseLexer{
 public:
-//конструктор
  tLexer():tBaseLexer(){
-//создать автоматы:
 //________________________________________
 
-// вещественное
     addrange(Adec,0,'0','9',1);
     addrange(Adec,1,'0','9',1);
     addstr(Adec,1,"e",2);
@@ -20,7 +17,6 @@ public:
     Adec.final(4);
 //________________________________________
 
-// идентификатор
   addstr(Aid, 0, "?", 4);
   addstr(Aid, 0, "!", 1);
   addrange(Aid, 0, 'a', 'z', 1);
@@ -54,7 +50,6 @@ public:
   Aid.final(3);
 //________________________________________
 
-// идентификатор предиката
   addstr(Aidq, 0, "?", 2);
   addstr(Aidq, 0, "!", 1);
   addstr(Aidq, 0, "-", 1);

@@ -1,4 +1,4 @@
-#include <iostream> //Made by Matvey Popov Ì80-108Á-20
+#include <iostream>
 using namespace std;
 int main ()
 {

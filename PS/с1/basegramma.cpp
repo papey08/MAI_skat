@@ -95,7 +95,6 @@ void enumgr(std::ostream& out, const tBaseGramma& gr)
   }
    out << endl;
 }
-//  Только для НЕУКОРАЧИВАЮЩИХ грамматик
 void tBaseGramma::addunique(tSymbstr& strset, tSymb a){
  if (strset.find_first_of(a) == tSymbstr::npos)
                                      strset +=a;
@@ -103,7 +102,7 @@ void tBaseGramma::addunique(tSymbstr& strset, tSymb a){
 
 void tBaseGramma::add_to_first(tSymb a,
                                tSymbstr& first)const
-{// a нетерминал
+{
   for(size_t ialt=0; ialt<altCount(a); ++ialt )
             addunique(first, rightPart(a,ialt)[0]);
 }
@@ -121,7 +120,7 @@ void tBaseGramma::createfirst(tSymb a,
 
 void tBaseGramma::add_to_last(tSymb a,
                               tSymbstr& last)const
-{// a нетерминал
+{
   for(size_t ialt=0; ialt<altCount(a); ++ialt )
    {
      const tSymbstr &rp = rightPart(a,ialt);
@@ -178,7 +177,6 @@ void
   makeFirst(firsts);
   makeLast(lasts);
 
-// цикл перебора всех пар, соседствующих в правых частях
    for (size_t left=start; left<sz; ++left){
      for(size_t ialt=0; ialt<altCount(left); ++ialt){
       const tSymbstr& rp=rightPart(left,ialt);
@@ -208,7 +206,6 @@ void
 
   const tSymb marker=1;
   addunique(follow[start], marker);
-//добавить marker в FOLLOW для всех нетерминалов из
 //           LAST(start)
  const tSymbstr& last_start = lasts[start];
  for(size_t i=0; i<last_start.length(); ++i){

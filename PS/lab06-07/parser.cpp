@@ -16,7 +16,6 @@ tParser::tParser(const char* gramma_name):lr(gr)
 
 int tParser::parse(const char* source_name){
   if(lr.size()==0){
-// испорчены управляющие таблицы
     return 1;
    }
    ferror_message.clear();
@@ -32,7 +31,7 @@ int tParser::parse(const char* source_name){
    tState state = 0;
    tState next = 0;
    const tSymb start = gr.getStart();
-   tSymb term = 1;// маркер
+   tSymb term = 1;
    stack.push_back(term);
    states.push_back(state);
    term = getTerm();
@@ -49,7 +48,7 @@ int tParser::parse(const char* source_name){
       break;
      }
 
-     if(next>0){//перенос
+     if(next>0){
        state = next;
        stack.push_back(term);
        states.push_back(state);
@@ -63,8 +62,7 @@ int tParser::parse(const char* source_name){
                     break;
                     }
          continue;
-     }//перенос
-//свертка
+     }
       tGramma::tRule descr = tLR::unpack(next);
       const tGramma::tAlt& alt = gr.getAlt(descr);
       size_t n = alt.rp.size();
@@ -77,26 +75,22 @@ int tParser::parse(const char* source_name){
   if(PARSER_DEBUG)
         out_prod(cout,gr,descr);
 
-// заменить основу символом левой части
       stack.push_back(left);
       states.push_back(state);
-// проверить условие допустимости цепочки
       if(stack.size() == 2 &&
          left == start &&
-         term == 1){// маркер коца
+         term == 1){
                      lex.End();
                      return 0;
         }
    }
 //+++++++++++++++++++++++++++++++
-// добавить к сообщению об ошибке номер
-// строки и смещение
+
      buf<< endl;
      buf<< setw(4) << 
          lex.GetLineCount()<<"|"<<
          lex.GetLineText()<< endl;
      buf<< "     " << 
-//          setw(1+lex.GetStartPos()) << "^"
           string(lex.GetStartPos(),' ') << "^"
         << endl;
      ferror_message += buf.str();

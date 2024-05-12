@@ -9,7 +9,6 @@ int main()
 {
   tFSM fsm;
 ///////////////////////
-//  Постоить автомат
   addstr(fsm,0,"_",1);
   addrange(fsm,0,'A','Z',1);
   addrange(fsm,0,'a','z',1);

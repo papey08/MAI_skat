@@ -6,7 +6,6 @@
 
 class tCG:public tBC{
 public:
-//конструктор
  tCG(const char* gramma_name) :tBC(gramma_name){}
 private:
  std::string declarations;
@@ -58,7 +57,6 @@ protected:
      return "__"+
             Authentication +
             "__"+id;
-// заменить '-','!','?'
  std::string tmp;
  for(size_t i=0; i<id.size(); ++i){
   switch(id[i]){
