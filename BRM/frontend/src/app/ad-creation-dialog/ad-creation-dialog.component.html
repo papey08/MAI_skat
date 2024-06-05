@@ -1,0 +1,58 @@
+<h2 mat-dialog-title>Объявление</h2>
+<mat-dialog-content class="fields">
+  @if (!file) {
+    <div
+      class="col-12 rmpm dropzone"
+      appDrag
+      (files)="filesDropped($event)"
+    >
+      <div class="text-wrapper">
+        <div class="centered">Загрузи картинку</div>
+      </div>
+    </div>
+  }
+  <div>
+    @if (file) {
+      <img [src]="file.url" width="300px" height="300px"/>
+    }
+  </div>
+
+  <mat-form-field>
+    <mat-label>Название товара</mat-label>
+    <input [formControl]="adFormGroup.controls.title" matInput/>
+    @if (adFormGroup.controls.title.invalid) {
+      <mat-error>Название не должно быть длиннее 200 символов</mat-error>
+    }
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Отрасль</mat-label>
+    <mat-select [formControl]="adFormGroup.controls.industry">
+      <mat-option>--</mat-option>
+      @for (industry of industries | keyvalue; track industry) {
+        <mat-option [value]="industry.key">{{ industry.key }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Цена</mat-label>
+    <input [formControl]="adFormGroup.controls.price" matInput type="number"/>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Описание</mat-label>
+    <input [formControl]="adFormGroup.controls.text" matInput/>
+    @if (adFormGroup.controls.text.invalid) {
+      <mat-error>Описание не должно быть длиннее 1000 символов</mat-error>
+    }
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button color="accent" mat-button mat-dialog-close>Выйти</button>
+  <button
+    (click)="closeDialog()"
+    cdkFocusInitial
+    color="primary"
+    mat-button
+  >
+    Разместить на торговой площадке
+  </button>
+</mat-dialog-actions>

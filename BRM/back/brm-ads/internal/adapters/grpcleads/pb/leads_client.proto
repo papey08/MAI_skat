@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package leads;
+option go_package = "/pb";
+
+service LeadsService {
+  rpc CreateLead(CreateLeadRequest) returns (CreateLeadResponse) {}
+}
+
+message Lead {
+  uint64 id = 1;
+  uint64 ad_id = 2;
+  string title = 3;
+  string description = 4;
+  uint64 price = 5;
+  uint64 status = 6;
+  uint64 responsible = 7;
+  uint64 company_id = 8;
+  uint64 client_company = 9;
+  uint64 client_employee = 10;
+  int64 creation_date = 11;
+  bool is_deleted = 12;
+}
+
+message CreateLeadRequest {
+  uint64 ad_id = 1;
+  uint64 client_company = 2;
+  uint64 client_employee = 3;
+}
+
+message CreateLeadResponse {
+  Lead lead = 1;
+}

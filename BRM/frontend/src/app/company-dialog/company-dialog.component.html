@@ -1,0 +1,19 @@
+<h2 mat-dialog-title>Компания</h2>
+<mat-dialog-content class="fields">
+  <mat-form-field>
+    <mat-label>Название</mat-label>
+    <input [formControl]="companyFormGroup.controls.name" matInput readonly>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Описание</mat-label>
+    <input [formControl]="companyFormGroup.controls.description" matInput readonly>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Отрасль</mat-label>
+    <input [formControl]="companyFormGroup.controls.industry" matInput readonly>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Рейтинг</mat-label>
+    <input [formControl]="companyFormGroup.controls.rating" matInput readonly>
+  </mat-form-field>
+</mat-dialog-content>

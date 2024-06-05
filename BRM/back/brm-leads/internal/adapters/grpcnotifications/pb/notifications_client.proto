@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package ads;
+option go_package = "/pb";
+import "google/protobuf/empty.proto";
+
+service NotificationsService {
+  rpc CreateNotification(CreateNotificationRequest) returns (google.protobuf.Empty) {}
+}
+
+message Notification {
+  uint64 id = 1;
+  uint64 company_id = 2;
+  string type = 3;
+  int64 date = 4;
+  bool viewed = 5;
+
+  NewLeadInfo new_lead = 6;
+  ClosedLeadInfo closed_lead = 7;
+}
+
+message NewLeadInfo {
+  uint64 lead_id = 1;
+  uint64 client_company = 2;
+}
+
+message ClosedLeadInfo {
+  uint64 ad_id = 1;
+  uint64 producer_company = 2;
+  bool answered = 3;
+}
+
+message CreateNotificationRequest {
+  Notification notification = 1;
+}

@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+package core;
+option go_package = "/pb";
+
+service CoreService {
+  rpc GetCompany(GetCompanyRequest) returns (GetCompanyResponse) {}
+  rpc GetEmployeeById(GetEmployeeByIdRequest) returns (GetEmployeeByIdResponse) {}
+}
+
+message Company {
+  uint64 id = 1;
+  string name = 2;
+  string description = 3;
+  uint64 industry = 4;
+  uint64 owner_id = 5;
+  double rating = 6;
+  int64 creation_date = 7;
+  bool is_deleted = 8;
+}
+
+message GetCompanyRequest {
+  uint64 id = 1;
+}
+
+message GetCompanyResponse {
+  Company company = 1;
+}
+
+message Employee {
+  uint64 id = 1;
+  uint64 company_id = 2;
+  string first_name = 3;
+  string second_name = 4;
+  string email = 5;
+  string password = 6;
+  string job_title = 7;
+  string department = 8;
+  int64 creation_date = 9;
+  bool is_deleted = 10;
+}
+
+message GetEmployeeByIdRequest {
+  uint64 company_id = 1;
+  uint64 employee_id = 2;
+  uint64 employee_id_to_find = 3;
+}
+
+message GetEmployeeByIdResponse {
+  Employee employee = 1;
+}

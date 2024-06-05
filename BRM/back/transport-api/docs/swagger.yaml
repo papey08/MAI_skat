@@ -1,0 +1,1637 @@
+basePath: /api/v1
+definitions:
+  ads.adData:
+    properties:
+      company_id:
+        type: integer
+      created_by:
+        type: integer
+      creation_date:
+        type: integer
+      id:
+        type: integer
+      image_url:
+        type: string
+      industry:
+        type: string
+      is_deleted:
+        type: boolean
+      price:
+        type: integer
+      responsible:
+        type: integer
+      text:
+        type: string
+      title:
+        type: string
+    type: object
+  ads.adListData:
+    properties:
+      ads:
+        items:
+          $ref: '#/definitions/ads.adData'
+        type: array
+      amount:
+        type: integer
+    type: object
+  ads.adListResponse:
+    properties:
+      data:
+        $ref: '#/definitions/ads.adListData'
+      error:
+        type: string
+    type: object
+  ads.adResponse:
+    properties:
+      data:
+        $ref: '#/definitions/ads.adData'
+      error:
+        type: string
+    type: object
+  ads.addAdRequest:
+    properties:
+      image_url:
+        type: string
+      industry:
+        type: string
+      price:
+        type: integer
+      text:
+        type: string
+      title:
+        type: string
+    type: object
+  ads.industriesResponse:
+    properties:
+      data:
+        additionalProperties:
+          type: integer
+        type: object
+      error:
+        type: string
+    type: object
+  ads.responseData:
+    properties:
+      ad_id:
+        type: integer
+      company_id:
+        type: integer
+      creation_date:
+        type: integer
+      employee_id:
+        type: integer
+      id:
+        type: integer
+    type: object
+  ads.responseListData:
+    properties:
+      amount:
+        type: integer
+      responses:
+        items:
+          $ref: '#/definitions/ads.responseData'
+        type: array
+    type: object
+  ads.responseListResponse:
+    properties:
+      data:
+        $ref: '#/definitions/ads.responseListData'
+      error:
+        type: string
+    type: object
+  ads.responseResponse:
+    properties:
+      data:
+        $ref: '#/definitions/ads.responseData'
+      error:
+        type: string
+    type: object
+  ads.updateAdRequest:
+    properties:
+      image_url:
+        type: string
+      industry:
+        type: string
+      price:
+        type: integer
+      responsible:
+        type: integer
+      text:
+        type: string
+      title:
+        type: string
+    type: object
+  companies.companyData:
+    properties:
+      creation_date:
+        type: integer
+      description:
+        type: string
+      id:
+        type: integer
+      industry:
+        type: string
+      is_deleted:
+        type: boolean
+      name:
+        type: string
+      owner_id:
+        type: integer
+      rating:
+        type: number
+    type: object
+  companies.companyResponse:
+    properties:
+      data:
+        $ref: '#/definitions/companies.companyData'
+      error:
+        type: string
+    type: object
+  companies.industriesResponse:
+    properties:
+      data:
+        additionalProperties:
+          type: integer
+        type: object
+      error:
+        type: string
+    type: object
+  companies.mainPageData:
+    properties:
+      active_ads_amount:
+        type: integer
+      active_leads_amount:
+        type: integer
+      active_leads_price:
+        type: integer
+      closed_leads_amount:
+        type: integer
+      closed_leads_price:
+        type: integer
+      company_absolute_rating:
+        type: number
+      company_relative_rating:
+        type: number
+    type: object
+  companies.mainPageResponse:
+    properties:
+      data:
+        $ref: '#/definitions/companies.mainPageData'
+      error:
+        type: string
+    type: object
+  companies.updateCompanyRequest:
+    properties:
+      description:
+        type: string
+      industry:
+        type: string
+      name:
+        type: string
+      owner_id:
+        type: integer
+    type: object
+  contacts.addContactRequest:
+    properties:
+      employee_id:
+        description: EmployeeId это id сотрудника, которого добавляют в контакты
+        type: integer
+    type: object
+  contacts.contactData:
+    properties:
+      creation_date:
+        type: integer
+      employee:
+        $ref: '#/definitions/contacts.employeeData'
+      employee_id:
+        type: integer
+      id:
+        type: integer
+      is_deleted:
+        type: boolean
+      notes:
+        type: string
+      owner_id:
+        type: integer
+    type: object
+  contacts.contactResponse:
+    properties:
+      data:
+        $ref: '#/definitions/contacts.contactData'
+      error:
+        type: string
+    type: object
+  contacts.employeeData:
+    properties:
+      company_id:
+        type: integer
+      creation_date:
+        type: integer
+      department:
+        type: string
+      email:
+        type: string
+      first_name:
+        type: string
+      id:
+        type: integer
+      image_url:
+        type: string
+      is_deleted:
+        type: boolean
+      job_title:
+        type: string
+      second_name:
+        type: string
+    type: object
+  contacts.updateContactRequest:
+    properties:
+      notes:
+        type: string
+    type: object
+  employees.addEmployeeRequest:
+    properties:
+      company_id:
+        type: integer
+      department:
+        type: string
+      email:
+        type: string
+      first_name:
+        type: string
+      image_url:
+        type: string
+      job_title:
+        type: string
+      password:
+        type: string
+      second_name:
+        type: string
+    type: object
+  employees.employeeData:
+    properties:
+      company_id:
+        type: integer
+      creation_date:
+        type: integer
+      department:
+        type: string
+      email:
+        type: string
+      first_name:
+        type: string
+      id:
+        type: integer
+      image_url:
+        type: string
+      is_deleted:
+        type: boolean
+      job_title:
+        type: string
+      second_name:
+        type: string
+    type: object
+  employees.employeeListData:
+    properties:
+      amount:
+        type: integer
+      employees:
+        items:
+          $ref: '#/definitions/employees.employeeData'
+        type: array
+    type: object
+  employees.employeeListResponse:
+    properties:
+      data:
+        $ref: '#/definitions/employees.employeeListData'
+      error:
+        type: string
+    type: object
+  employees.employeeResponse:
+    properties:
+      data:
+        $ref: '#/definitions/employees.employeeData'
+      error:
+        type: string
+    type: object
+  employees.updateEmployeeRequest:
+    properties:
+      department:
+        type: string
+      first_name:
+        type: string
+      image_url:
+        type: string
+      job_title:
+        type: string
+      second_name:
+        type: string
+    type: object
+  leads.leadData:
+    properties:
+      ad_id:
+        type: integer
+      client_company:
+        type: integer
+      client_employee:
+        type: integer
+      company_id:
+        type: integer
+      creation_date:
+        type: integer
+      description:
+        type: string
+      id:
+        type: integer
+      is_deleted:
+        type: boolean
+      price:
+        type: integer
+      responsible:
+        type: integer
+      status:
+        type: string
+      title:
+        type: string
+    type: object
+  leads.leadResponse:
+    properties:
+      data:
+        $ref: '#/definitions/leads.leadData'
+      error:
+        type: string
+    type: object
+  leads.leadsListData:
+    properties:
+      amount:
+        type: integer
+      leads:
+        items:
+          $ref: '#/definitions/leads.leadData'
+        type: array
+    type: object
+  leads.leadsListResponse:
+    properties:
+      data:
+        $ref: '#/definitions/leads.leadsListData'
+      error:
+        type: string
+    type: object
+  leads.statusesResponse:
+    properties:
+      data:
+        additionalProperties:
+          type: integer
+        type: object
+      error:
+        type: string
+    type: object
+  leads.updateLeadRequest:
+    properties:
+      description:
+        type: string
+      price:
+        type: integer
+      responsible:
+        type: integer
+      status:
+        type: string
+      title:
+        type: string
+    type: object
+  notifications.closedLeadData:
+    properties:
+      ad_id:
+        type: integer
+      answered:
+        type: boolean
+      producer_company:
+        type: integer
+    type: object
+  notifications.newLeadData:
+    properties:
+      client_company:
+        type: integer
+      lead_id:
+        type: integer
+    type: object
+  notifications.notificationData:
+    properties:
+      closed_lead_info:
+        $ref: '#/definitions/notifications.closedLeadData'
+      company_id:
+        type: integer
+      date:
+        type: integer
+      id:
+        type: integer
+      new_lead_info:
+        $ref: '#/definitions/notifications.newLeadData'
+      type:
+        type: string
+      viewed:
+        type: boolean
+    type: object
+  notifications.notificationListData:
+    properties:
+      amount:
+        type: integer
+      notifications:
+        items:
+          $ref: '#/definitions/notifications.notificationData'
+        type: array
+    type: object
+  notifications.notificationListResponse:
+    properties:
+      data:
+        $ref: '#/definitions/notifications.notificationListData'
+      error:
+        type: string
+    type: object
+  notifications.notificationResponse:
+    properties:
+      data:
+        $ref: '#/definitions/notifications.notificationData'
+      error:
+        type: string
+    type: object
+host: localhost:8090
+info:
+  contact: {}
+  description: Swagger документация к API
+  title: BRM API
+  version: "1.0"
+paths:
+  /companies/{id}:
+    get:
+      description: Возвращает поля компании для страницы редактирования
+      parameters:
+      - description: id компании
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Успешное получение данных
+          schema:
+            $ref: '#/definitions/companies.companyResponse'
+        "400":
+          description: Неверный формат входных данных
+          schema:
+            $ref: '#/definitions/companies.companyResponse'
+        "401":
+          description: Ошибка авторизации
+          schema:
+            $ref: '#/definitions/companies.companyResponse'
+        "403":
+          description: Нет прав для выполнения операции
+          schema:
+            $ref: '#/definitions/companies.companyResponse'
+        "404":
+          description: Компания не найдена
+          schema:
+            $ref: '#/definitions/companies.companyResponse'
+        "500":
+          description: Проблемы на стороне сервера
+          schema:
+            $ref: '#/definitions/companies.companyResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Получение информации о компании
+      tags:
+      - core/companies
+    put:
+      description: Изменяет одно или несколько полей компании
+      parameters:
+      - description: id компании
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Новые поля
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/companies.updateCompanyRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Успешное обновление данных
+          schema:
+            $ref: '#/definitions/companies.companyResponse'
+        "400":
+          description: Неверный формат входных данных
+          schema:
+            $ref: '#/definitions/companies.companyResponse'
+        "401":
+          description: Ошибка авторизации
+          schema:
+            $ref: '#/definitions/companies.companyResponse'
+        "403":
+          description: Нет прав для выполнения операции
+          schema:
+            $ref: '#/definitions/companies.companyResponse'
+        "404":
+          description: Компания не найдена
+          schema:
+            $ref: '#/definitions/companies.companyResponse'
+        "500":
+          description: Проблемы на стороне сервера
+          schema:
+            $ref: '#/definitions/companies.companyResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Редактирование полей компании
+      tags:
+      - core/companies
+  /companies/industries:
+    get:
+      description: Возвращает словарь из возможных отраслей компаний и их id
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Успешное получение данных
+          schema:
+            $ref: '#/definitions/companies.industriesResponse'
+        "500":
+          description: Проблемы на стороне сервера
+          schema:
+            $ref: '#/definitions/companies.industriesResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Получение отраслей
+      tags:
+      - core/companies
+  /companies/mainpage:
+    get:
+      description: Возвращает название и статистику компании для главной страницы
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Успешное получение данных
+          schema:
+            $ref: '#/definitions/companies.mainPageResponse'
+        "400":
+          description: Неверный формат входных данных
+          schema:
+            $ref: '#/definitions/companies.mainPageResponse'
+        "401":
+          description: Ошибка авторизации
+          schema:
+            $ref: '#/definitions/companies.mainPageResponse'
+        "403":
+          description: Нет прав для выполнения операции
+          schema:
+            $ref: '#/definitions/companies.mainPageResponse'
+        "404":
+          description: Компания не найдена
+          schema:
+            $ref: '#/definitions/companies.mainPageResponse'
+        "500":
+          description: Проблемы на стороне сервера
+          schema:
+            $ref: '#/definitions/companies.mainPageResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Получение информации о компании
+      tags:
+      - core/companies
+  /contacts:
+    get:
+      description: Получает список контактов сотрудника с использованием фильтрации
+        и пагинации
+      parameters:
+      - description: Limit
+        in: query
+        name: limit
+        required: true
+        type: integer
+      - description: Offset
+        in: query
+        name: offset
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Успешное получение контактов
+          schema:
+            $ref: '#/definitions/contacts.contactResponse'
+        "400":
+          description: Неверный формат входных данных
+          schema:
+            $ref: '#/definitions/contacts.contactResponse'
+        "401":
+          description: Ошибка авторизации
+          schema:
+            $ref: '#/definitions/contacts.contactResponse'
+        "403":
+          description: Нет прав для выполнения операции
+          schema:
+            $ref: '#/definitions/contacts.contactResponse'
+        "500":
+          description: Проблемы на стороне сервера
+          schema:
+            $ref: '#/definitions/contacts.contactResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Получение списка контактов
+      tags:
+      - core/contacts
+    post:
+      consumes:
+      - application/json
+      description: Добавляет новый контакт в список контактов сотрудника
+      parameters:
+      - description: id сотрудника, которого добавляют в контакты
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/contacts.addContactRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Успешное добавление контакта
+          schema:
+            $ref: '#/definitions/contacts.contactResponse'
+        "400":
+          description: Неверный формат входных данных
+          schema:
+            $ref: '#/definitions/contacts.contactResponse'
+        "401":
+          description: Ошибка авторизации
+          schema:
+            $ref: '#/definitions/contacts.contactResponse'
+        "403":
+          description: Нет прав для выполнения операции
+          schema:
+            $ref: '#/definitions/contacts.contactResponse'
+        "404":
+          description: Добавляемый сотрудник не найден
+          schema:
+            $ref: '#/definitions/contacts.contactResponse'
+        "500":
+          description: Проблемы на стороне сервера
+          schema:
+            $ref: '#/definitions/contacts.contactResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Добавление нового контакта
+      tags:
+      - core/contacts
+  /contacts/{id}:
+    delete:
+      description: Безвозвратно удаляет контакт и все его поля
+      parameters:
+      - description: id контакта
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Успешное удаление контакта
+          schema:
+            $ref: '#/definitions/contacts.contactResponse'
+        "400":
+          description: Неверный формат входных данных
+          schema:
+            $ref: '#/definitions/contacts.contactResponse'
+        "401":
+          description: Ошибка авторизации
+          schema:
+            $ref: '#/definitions/contacts.contactResponse'
+        "403":
+          description: Нет прав для выполнения операции
+          schema:
+            $ref: '#/definitions/contacts.contactResponse'
+        "404":
+          description: Контакт не найден
+          schema:
+            $ref: '#/definitions/contacts.contactResponse'
+        "500":
+          description: Проблемы на стороне сервера
+          schema:
+            $ref: '#/definitions/contacts.contactResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Удаление контакта
+      tags:
+      - core/contacts
+    get:
+      description: Получает контакт по id
+      parameters:
+      - description: id контакта
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Успешное получение контакта
+          schema:
+            $ref: '#/definitions/contacts.contactResponse'
+        "400":
+          description: Неверный формат входных данных
+          schema:
+            $ref: '#/definitions/contacts.contactResponse'
+        "401":
+          description: Ошибка авторизации
+          schema:
+            $ref: '#/definitions/contacts.contactResponse'
+        "403":
+          description: Нет прав для выполнения операции
+          schema:
+            $ref: '#/definitions/contacts.contactResponse'
+        "404":
+          description: Контакт не найден
+          schema:
+            $ref: '#/definitions/contacts.contactResponse'
+        "500":
+          description: Проблемы на стороне сервера
+          schema:
+            $ref: '#/definitions/contacts.contactResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Получение контакта
+      tags:
+      - core/contacts
+    put:
+      consumes:
+      - application/json
+      description: Изменяет одно или несколько полей контакта
+      parameters:
+      - description: id контакта
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Новые поля
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/contacts.updateContactRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Успешное обновление данных
+          schema:
+            $ref: '#/definitions/contacts.contactResponse'
+        "400":
+          description: Неверный формат входных данных
+          schema:
+            $ref: '#/definitions/contacts.contactResponse'
+        "401":
+          description: Ошибка авторизации
+          schema:
+            $ref: '#/definitions/contacts.contactResponse'
+        "403":
+          description: Нет прав для выполнения операции
+          schema:
+            $ref: '#/definitions/contacts.contactResponse'
+        "404":
+          description: Контакт не найден
+          schema:
+            $ref: '#/definitions/contacts.contactResponse'
+        "500":
+          description: Проблемы на стороне сервера
+          schema:
+            $ref: '#/definitions/contacts.contactResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Редактирование контакта
+      tags:
+      - core/contacts
+  /employees:
+    get:
+      description: Получает список сотрудников компании с использованием фильтрации
+        и пагинации
+      parameters:
+      - description: Limit
+        in: query
+        name: limit
+        required: true
+        type: integer
+      - description: Offset
+        in: query
+        name: offset
+        required: true
+        type: integer
+      - description: Поиск по имени/фамилии
+        in: query
+        name: name
+        type: string
+      - description: Поиск по должности
+        in: query
+        name: jobtitle
+        type: string
+      - description: Поиск по названию отдела
+        in: query
+        name: department
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Успешное получение сотрудников
+          schema:
+            $ref: '#/definitions/employees.employeeListResponse'
+        "400":
+          description: Неверный формат входных данных
+          schema:
+            $ref: '#/definitions/employees.employeeListResponse'
+        "401":
+          description: Ошибка авторизации
+          schema:
+            $ref: '#/definitions/employees.employeeResponse'
+        "403":
+          description: Нет прав для выполнения операции
+          schema:
+            $ref: '#/definitions/employees.employeeResponse'
+        "500":
+          description: Проблемы на стороне сервера
+          schema:
+            $ref: '#/definitions/employees.employeeListResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Получение списка сотрудников
+      tags:
+      - core/employees
+    post:
+      consumes:
+      - application/json
+      description: Добавляет нового сотрудника в компанию
+      parameters:
+      - description: id сотрудника, которого добавляют в контакты
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/employees.addEmployeeRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Успешное добавление сотрудника
+          schema:
+            $ref: '#/definitions/employees.employeeResponse'
+        "400":
+          description: Неверный формат входных данных
+          schema:
+            $ref: '#/definitions/employees.employeeResponse'
+        "401":
+          description: Ошибка авторизации
+          schema:
+            $ref: '#/definitions/employees.employeeResponse'
+        "403":
+          description: Нет прав для выполнения операции
+          schema:
+            $ref: '#/definitions/employees.employeeResponse'
+        "500":
+          description: Проблемы на стороне сервера
+          schema:
+            $ref: '#/definitions/employees.employeeResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Добавление нового сотрудника
+      tags:
+      - core/employees
+  /employees/{id}:
+    delete:
+      description: Безвозвратно удаляет сотрудника и все его поля
+      parameters:
+      - description: id сотрудника
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Успешное удаление контакта
+          schema:
+            $ref: '#/definitions/employees.employeeResponse'
+        "400":
+          description: Неверный формат входных данных
+          schema:
+            $ref: '#/definitions/employees.employeeResponse'
+        "401":
+          description: Ошибка авторизации
+          schema:
+            $ref: '#/definitions/employees.employeeResponse'
+        "403":
+          description: Нет прав для выполнения операции
+          schema:
+            $ref: '#/definitions/employees.employeeResponse'
+        "404":
+          description: Сотрудник не найден
+          schema:
+            $ref: '#/definitions/employees.employeeResponse'
+        "500":
+          description: Проблемы на стороне сервера
+          schema:
+            $ref: '#/definitions/employees.employeeResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Удаление сотрудника
+      tags:
+      - core/employees
+    get:
+      description: Получает сотрудника по id
+      parameters:
+      - description: id сотрудника
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Успешное получение сотрудника
+          schema:
+            $ref: '#/definitions/employees.employeeResponse'
+        "400":
+          description: Неверный формат входных данных
+          schema:
+            $ref: '#/definitions/employees.employeeResponse'
+        "401":
+          description: Ошибка авторизации
+          schema:
+            $ref: '#/definitions/employees.employeeResponse'
+        "403":
+          description: Нет прав для выполнения операции
+          schema:
+            $ref: '#/definitions/employees.employeeResponse'
+        "404":
+          description: Сотрудник не найден
+          schema:
+            $ref: '#/definitions/employees.employeeResponse'
+        "500":
+          description: Проблемы на стороне сервера
+          schema:
+            $ref: '#/definitions/employees.employeeResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Получение сотрудника
+      tags:
+      - core/employees
+    put:
+      consumes:
+      - application/json
+      description: Изменяет одно или несколько полей сотрудника
+      parameters:
+      - description: id сотрудника
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Новые поля
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/employees.updateEmployeeRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Успешное обновление данных
+          schema:
+            $ref: '#/definitions/employees.employeeResponse'
+        "400":
+          description: Неверный формат входных данных
+          schema:
+            $ref: '#/definitions/employees.employeeResponse'
+        "401":
+          description: Ошибка авторизации
+          schema:
+            $ref: '#/definitions/employees.employeeResponse'
+        "403":
+          description: Нет прав для выполнения операции
+          schema:
+            $ref: '#/definitions/employees.employeeResponse'
+        "404":
+          description: Сотрудник не найден
+          schema:
+            $ref: '#/definitions/employees.employeeResponse'
+        "500":
+          description: Проблемы на стороне сервера
+          schema:
+            $ref: '#/definitions/employees.employeeResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Редактирование сотрудника
+      tags:
+      - core/employees
+  /leads:
+    get:
+      description: Получает список сделок с использованием фильтрации и пагинации
+      parameters:
+      - description: Limit
+        in: query
+        name: limit
+        required: true
+        type: integer
+      - description: Offset
+        in: query
+        name: offset
+        required: true
+        type: integer
+      - description: Фильтрация по id ответственного
+        in: query
+        name: responsible
+        type: integer
+      - description: Фильтрация по статусу
+        in: query
+        name: status
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Успешное получение сделок
+          schema:
+            $ref: '#/definitions/leads.leadsListResponse'
+        "400":
+          description: Неверный формат входных данных
+          schema:
+            $ref: '#/definitions/leads.leadsListResponse'
+        "401":
+          description: Ошибка авторизации
+          schema:
+            $ref: '#/definitions/leads.leadResponse'
+        "500":
+          description: Проблемы на стороне сервера
+          schema:
+            $ref: '#/definitions/leads.leadsListResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Получение списка сделок
+      tags:
+      - leads
+  /leads/{id}:
+    get:
+      description: Получает сделку по id
+      parameters:
+      - description: id сделки
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Успешное получение сделки
+          schema:
+            $ref: '#/definitions/leads.leadResponse'
+        "400":
+          description: Неверный формат входных данных
+          schema:
+            $ref: '#/definitions/leads.leadResponse'
+        "401":
+          description: Ошибка авторизации
+          schema:
+            $ref: '#/definitions/leads.leadResponse'
+        "404":
+          description: Сделка не найдена
+          schema:
+            $ref: '#/definitions/leads.leadResponse'
+        "500":
+          description: Проблемы на стороне сервера
+          schema:
+            $ref: '#/definitions/leads.leadResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Получение сделки
+      tags:
+      - leads
+    put:
+      consumes:
+      - application/json
+      description: Изменяет одно или несколько полей сделки
+      parameters:
+      - description: id сделки
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Новые поля
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/leads.updateLeadRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Успешное обновление данных
+          schema:
+            $ref: '#/definitions/leads.leadResponse'
+        "400":
+          description: Неверный формат входных данных
+          schema:
+            $ref: '#/definitions/leads.leadResponse'
+        "401":
+          description: Ошибка авторизации
+          schema:
+            $ref: '#/definitions/leads.leadResponse'
+        "403":
+          description: Нет прав на редактрование сделки
+          schema:
+            $ref: '#/definitions/leads.leadResponse'
+        "404":
+          description: Сделка не найдена
+          schema:
+            $ref: '#/definitions/leads.leadResponse'
+        "500":
+          description: Проблемы на стороне сервера
+          schema:
+            $ref: '#/definitions/leads.leadResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Редактирование сделки
+      tags:
+      - leads
+  /leads/statuses:
+    get:
+      description: Возвращает мапу со статусами и их id
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Успешное получение
+          schema:
+            $ref: '#/definitions/leads.statusesResponse'
+        "401":
+          description: Ошибка авторизации
+          schema:
+            $ref: '#/definitions/leads.statusesResponse'
+        "500":
+          description: Проблемы на стороне сервера
+          schema:
+            $ref: '#/definitions/leads.statusesResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Получение статусов и их id
+      tags:
+      - leads
+  /market:
+    get:
+      description: Получает список объявлений с использованием фильтрации и пагинации
+      parameters:
+      - description: Limit
+        in: query
+        name: limit
+        required: true
+        type: integer
+      - description: Offset
+        in: query
+        name: offset
+        required: true
+        type: integer
+      - description: Поиск по названию/тексту
+        in: query
+        name: pattern
+        type: string
+      - description: Поиск по компании
+        in: query
+        name: company_id
+        type: integer
+      - description: Поиск по отрасли
+        in: query
+        name: industry
+        type: string
+      - description: Сортировка по возрастанию цены
+        in: query
+        name: by_price
+        type: boolean
+      - description: Сортировка по убыванию цены
+        in: query
+        name: by_price_desc
+        type: boolean
+      - description: Сортировка по возрастанию даты создания
+        in: query
+        name: by_date
+        type: boolean
+      - description: Сортировка по убыванию даты создания
+        in: query
+        name: by_date_desc
+        type: boolean
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Успешное получение объявлений
+          schema:
+            $ref: '#/definitions/ads.adListResponse'
+        "400":
+          description: Неверный формат входных данных
+          schema:
+            $ref: '#/definitions/ads.adListResponse'
+        "401":
+          description: Ошибка авторизации
+          schema:
+            $ref: '#/definitions/ads.adResponse'
+        "500":
+          description: Проблемы на стороне сервера
+          schema:
+            $ref: '#/definitions/ads.adListResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Получение списка объявлений
+      tags:
+      - ads
+    post:
+      consumes:
+      - application/json
+      description: Добавляет новое объявление
+      parameters:
+      - description: Новое объявление в JSON
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/ads.addAdRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Успешное добавление объявления
+          schema:
+            $ref: '#/definitions/ads.adResponse'
+        "400":
+          description: Неверный формат входных данных
+          schema:
+            $ref: '#/definitions/ads.adResponse'
+        "401":
+          description: Ошибка авторизации
+          schema:
+            $ref: '#/definitions/ads.adResponse'
+        "500":
+          description: Проблемы на стороне сервера
+          schema:
+            $ref: '#/definitions/ads.adResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Добавление нового объявления
+      tags:
+      - ads
+  /market/{id}:
+    delete:
+      description: Безвозвратно удаляет объявление
+      parameters:
+      - description: id объявления
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Успешное удаление объявления
+          schema:
+            $ref: '#/definitions/ads.adResponse'
+        "400":
+          description: Неверный формат входных данных
+          schema:
+            $ref: '#/definitions/ads.adResponse'
+        "404":
+          description: Объявление не найдено
+          schema:
+            $ref: '#/definitions/ads.adResponse'
+        "500":
+          description: Проблемы на стороне сервера
+          schema:
+            $ref: '#/definitions/ads.adResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Удаление объявления
+      tags:
+      - ads
+    get:
+      description: Получает объявление по id
+      parameters:
+      - description: id объявления
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Успешное получение объявления
+          schema:
+            $ref: '#/definitions/ads.adResponse'
+        "400":
+          description: Неверный формат входных данных
+          schema:
+            $ref: '#/definitions/ads.adResponse'
+        "401":
+          description: Ошибка авторизации
+          schema:
+            $ref: '#/definitions/ads.adResponse'
+        "404":
+          description: Объявление не найдено
+          schema:
+            $ref: '#/definitions/ads.adResponse'
+        "500":
+          description: Проблемы на стороне сервера
+          schema:
+            $ref: '#/definitions/ads.adResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Получение объявления
+      tags:
+      - ads
+    put:
+      consumes:
+      - application/json
+      description: Изменяет одно или несколько полей объявления
+      parameters:
+      - description: id объявления
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Новые поля
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/ads.updateAdRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Успешное обновление данных
+          schema:
+            $ref: '#/definitions/ads.adResponse'
+        "400":
+          description: Неверный формат входных данных
+          schema:
+            $ref: '#/definitions/ads.adResponse'
+        "404":
+          description: Объявление не найдено
+          schema:
+            $ref: '#/definitions/ads.adResponse'
+        "500":
+          description: Проблемы на стороне сервера
+          schema:
+            $ref: '#/definitions/ads.adResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Редактирование объявления
+      tags:
+      - ads
+  /market/{id}/response:
+    post:
+      description: Создаёт отклик у откликнувшейся компании и сделку у владельца объявления
+      parameters:
+      - description: id объявления
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Успешное создание отклика
+          schema:
+            $ref: '#/definitions/ads.responseResponse'
+        "400":
+          description: Неверный формат входных данных
+          schema:
+            $ref: '#/definitions/ads.responseResponse'
+        "404":
+          description: Объявление не найдено
+          schema:
+            $ref: '#/definitions/ads.responseResponse'
+        "409":
+          description: Попытка откликнуться на объявление своей же компании
+          schema:
+            $ref: '#/definitions/ads.responseResponse'
+        "500":
+          description: Проблемы на стороне сервера
+          schema:
+            $ref: '#/definitions/ads.responseResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Откликнуться на объявление
+      tags:
+      - ads
+  /market/industries:
+    get:
+      description: Возвращает словарь из возможных отраслей объявлений и их id
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Успешное получение данных
+          schema:
+            $ref: '#/definitions/ads.industriesResponse'
+        "500":
+          description: Проблемы на стороне сервера
+          schema:
+            $ref: '#/definitions/ads.industriesResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Получение отраслей
+      tags:
+      - ads
+  /notifications:
+    get:
+      description: Получает список уведомлений
+      parameters:
+      - description: Limit
+        in: query
+        name: limit
+        required: true
+        type: integer
+      - description: Offset
+        in: query
+        name: offset
+        required: true
+        type: integer
+      - description: Вернуть только непрочитанные уведомления
+        in: query
+        name: only_not_viewed
+        type: boolean
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Успешное получение объявлений
+          schema:
+            $ref: '#/definitions/notifications.notificationListResponse'
+        "400":
+          description: Неверный формат входных данных
+          schema:
+            $ref: '#/definitions/notifications.notificationListResponse'
+        "401":
+          description: Ошибка авторизации
+          schema:
+            $ref: '#/definitions/notifications.notificationListResponse'
+        "500":
+          description: Проблемы на стороне сервера
+          schema:
+            $ref: '#/definitions/notifications.notificationListResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Получение списка уведомлений
+      tags:
+      - notifications
+  /notifications/{id}:
+    get:
+      description: Получает уведомление по id
+      parameters:
+      - description: id уведомления
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Успешное получение уведомления
+          schema:
+            $ref: '#/definitions/notifications.notificationResponse'
+        "400":
+          description: Неверный формат входных данных
+          schema:
+            $ref: '#/definitions/notifications.notificationResponse'
+        "401":
+          description: Ошибка авторизации
+          schema:
+            $ref: '#/definitions/notifications.notificationResponse'
+        "403":
+          description: Нет прав для выполнения действия
+          schema:
+            $ref: '#/definitions/notifications.notificationResponse'
+        "404":
+          description: Уведомление не найдено
+          schema:
+            $ref: '#/definitions/notifications.notificationResponse'
+        "500":
+          description: Проблемы на стороне сервера
+          schema:
+            $ref: '#/definitions/notifications.notificationResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Получение уведомления
+      tags:
+      - notifications
+    post:
+      description: Когда компания-поставщик услуги отмечает сделку закрытой, в компанию
+        клиента приходит уведомление об этом. Клиент может подтвердить закрытие сделки,
+        чтобы у поставщика вырос рейтинг
+      parameters:
+      - description: id уведомления
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Подтверждено/не подтверждено
+        in: query
+        name: submit
+        required: true
+        type: boolean
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Успешное подтверждение
+          schema:
+            $ref: '#/definitions/notifications.notificationResponse'
+        "400":
+          description: Неверный формат входных данных
+          schema:
+            $ref: '#/definitions/notifications.notificationResponse'
+        "401":
+          description: Ошибка авторизации
+          schema:
+            $ref: '#/definitions/notifications.notificationResponse'
+        "403":
+          description: Нет прав для выполнения действия
+          schema:
+            $ref: '#/definitions/notifications.notificationResponse'
+        "404":
+          description: Уведомление не найдено
+          schema:
+            $ref: '#/definitions/notifications.notificationResponse'
+        "409":
+          description: Попытка повторного подтверждения
+          schema:
+            $ref: '#/definitions/notifications.notificationResponse'
+        "500":
+          description: Проблемы на стороне сервера
+          schema:
+            $ref: '#/definitions/notifications.notificationResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Подтверждение закрытой сделки
+      tags:
+      - notifications
+  /responses:
+    get:
+      description: Возвращает список откликов компании на объявления
+      parameters:
+      - description: Limit
+        in: query
+        name: limit
+        required: true
+        type: integer
+      - description: Offset
+        in: query
+        name: offset
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Успешное получение списка
+          schema:
+            $ref: '#/definitions/ads.responseListResponse'
+        "400":
+          description: Неверный формат входных данных
+          schema:
+            $ref: '#/definitions/ads.responseListResponse'
+        "500":
+          description: Проблемы на стороне сервера
+          schema:
+            $ref: '#/definitions/ads.responseListResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Получение списка откликов на объявления
+      tags:
+      - ads
+securityDefinitions:
+  ApiKeyAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

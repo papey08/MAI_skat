@@ -1,0 +1,78 @@
+<h2 mat-dialog-title>Новый сотрудник</h2>
+<mat-dialog-content class="fields">
+  @if (!file) {
+    <div
+      class="col-12 rmpm dropzone"
+      appDrag
+      (files)="filesDropped($event)"
+    >
+      <div class="text-wrapper">
+        <div class="centered">Загрузи картинку</div>
+      </div>
+    </div>
+  }
+  <div>
+    @if (file) {
+      <img [src]="file.url" width="300px" height="300px"/>
+    }
+  </div>
+  <mat-form-field>
+    <mat-label>Имя</mat-label>
+    <input [formControl]="employeeFormGroup.controls.first_name" matInput/>
+    @if (employeeFormGroup.controls.first_name.invalid) {
+      <mat-error>Имя не должно быть длиннее 100 символов</mat-error>
+    }
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Фамилия</mat-label>
+    <input [formControl]="employeeFormGroup.controls.second_name" matInput/>
+    @if (employeeFormGroup.controls.second_name.invalid) {
+      <mat-error>Имя не должно быть длиннее 100 символов</mat-error>
+    }
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Почта</mat-label>
+    <input [formControl]="employeeFormGroup.controls.email" matInput/>
+    @if (employeeFormGroup.controls.email.invalid) {
+      <mat-error>Почта должна быть корректной</mat-error>
+    }
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Департамент</mat-label>
+    <input [formControl]="employeeFormGroup.controls.department" matInput/>
+    @if (employeeFormGroup.controls.department.invalid) {
+      <mat-error>Департамент не должен быть длиннее 100 символов</mat-error>
+    }
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Должность</mat-label>
+    <input [formControl]="employeeFormGroup.controls.job_title" matInput/>
+    @if (employeeFormGroup.controls.job_title.invalid) {
+      <mat-error>Должность не должна быть длиннее 100 символов</mat-error>
+    }
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Пароль</mat-label>
+    <input
+      [formControl]="employeeFormGroup.controls.password"
+      matInput
+      type="password"
+    />
+    @if (employeeFormGroup.controls.password.invalid) {
+      <mat-error>Длина пароля должна быть от 8 до 24 символов, состоять только из символов латинского алфавита, цифр, и
+        знаков пунктуации
+      </mat-error>
+    }
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button color="accent" mat-button mat-dialog-close>Выйти</button>
+  <button
+    (click)="closeDialog()"
+    cdkFocusInitial
+    color="primary"
+    mat-button
+  >
+    Сохранить
+  </button>
+</mat-dialog-actions>

@@ -1,0 +1,52 @@
+<mat-card>
+  <mat-card-header>
+    <h2>Компания</h2>
+  </mat-card-header>
+  <mat-card-content>
+    <p>
+      <mat-form-field appearance="outline" class="field">
+        <mat-label>Название</mat-label>
+        <input [formControl]="companyFormGroup.controls.name" matInput>
+        @if (companyFormGroup.controls.name.invalid) {
+          <mat-error>Название компании не должно быть длиннее 100 символов</mat-error>
+        }
+        <mat-icon matSuffix>business</mat-icon>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="outline" class="field">
+        <mat-label>Описание</mat-label>
+        <input [formControl]="companyFormGroup.controls.description" matInput>
+        @if (companyFormGroup.controls.description.invalid) {
+          <mat-error>Описание компании не должно быть длиннее 1000 символов</mat-error>
+        }
+        <mat-icon matSuffix>description</mat-icon>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="outline" class="field">
+        <mat-label>Отрасль</mat-label>
+        <mat-select [formControl]="companyFormGroup.controls.industry">
+          @for (industry of industries | keyvalue; track industry) {
+            <mat-option [value]="industry.key">{{ industry.key }}</mat-option>
+          }
+        </mat-select>
+        <mat-icon matSuffix>construction</mat-icon>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="outline" class="field">
+        <mat-label>Рейтинг</mat-label>
+        <input [formControl]="companyFormGroup.controls.rating" matInput readonly type="number">
+        <mat-icon matSuffix>trending_up</mat-icon>
+      </mat-form-field>
+    </p>
+    <mat-card-footer>Вы можете изменить информацию о своей компании</mat-card-footer>
+    <mat-card-actions>
+      <button (click)="updateCompany()" [hidden]="!formGroupChanged" color="primary" mat-raised-button>Обновить
+        информацию о
+        компании
+      </button>
+    </mat-card-actions>
+  </mat-card-content>
+</mat-card>

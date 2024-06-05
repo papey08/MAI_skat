@@ -1,0 +1,145 @@
+syntax = "proto3";
+
+package ads;
+option go_package = "/pb";
+import "google/protobuf/empty.proto";
+
+service AdsService {
+  rpc GetAdById(GetAdByIdRequest) returns (GetAdByIdResponse) {}
+  rpc GetAdsList(GetAdsListRequest) returns (GetAdsListResponse) {}
+  rpc CreateAd(CreateAdRequest) returns (CreateAdResponse) {}
+  rpc UpdateAd(UpdateAdRequest) returns (UpdateAdResponse) {}
+  rpc DeleteAd(DeleteAdRequest) returns (google.protobuf.Empty) {}
+
+  rpc CreateResponse(CreateResponseRequest) returns (CreateResponseResponse) {}
+  rpc GetResponses(GetResponsesRequest) returns (GetResponsesResponse) {}
+
+  rpc GetIndustries(google.protobuf.Empty) returns (GetIndustriesResponse) {}
+}
+
+message Ad {
+  uint64 id = 1;
+  uint64 company_id = 2;
+  string title = 3;
+  string text = 4;
+  string industry = 5;
+  uint64 price = 6;
+  string image_url = 7;
+  int64 creation_date = 8;
+  uint64 created_by = 9;
+  uint64 responsible = 10;
+  bool is_deleted = 11;
+}
+
+message Response {
+  uint64 id = 1;
+  uint64 company_id = 2;
+  uint64 employee_id = 3;
+  uint64 ad_id = 4;
+  int64 creation_date = 5;
+}
+
+message GetAdByIdRequest {
+  uint64 id = 1;
+}
+
+message GetAdByIdResponse {
+  Ad ad = 1;
+}
+
+message GetAdsListRequest {
+  AdsListParams params = 1;
+}
+
+message AdsListParams {
+  AdSearcher search = 1;
+  AdFilter filter = 2;
+  AdSorter sort = 3;
+  uint64 limit = 4;
+  uint64 offset = 5;
+}
+
+message AdSearcher {
+  string pattern = 1;
+}
+
+message AdFilter {
+  bool by_company = 1;
+  uint64 company_id = 2;
+  bool by_industry = 3;
+  string industry = 4;
+}
+
+message AdSorter {
+  bool by_price_asc = 1;
+  bool by_price_desc = 2;
+  bool by_date_asc = 3;
+  bool by_date_desc = 4;
+}
+
+message GetAdsListResponse {
+  repeated Ad list = 1;
+  uint64 amount = 2;
+}
+
+message CreateAdRequest {
+  uint64 company_id = 1;
+  uint64 employee_id = 2;
+  Ad ad = 3;
+}
+
+message CreateAdResponse {
+  Ad ad = 1;
+}
+
+message UpdateAdRequest {
+  uint64 company_id = 1;
+  uint64 employee_id = 2;
+  uint64 ad_id = 3;
+  UpdateAdFields upd = 4;
+}
+
+message UpdateAdFields {
+  string title = 1;
+  string text = 2;
+  string industry = 3;
+  uint64 price = 4;
+  string image_url = 5;
+  uint64 responsible = 6;
+}
+
+message UpdateAdResponse {
+  Ad ad = 1;
+}
+
+message DeleteAdRequest {
+  uint64 company_id = 1;
+  uint64 employee_id = 2;
+  uint64 ad_id = 3;
+}
+
+message CreateResponseRequest {
+  uint64 company_id = 1;
+  uint64 employee_id = 2;
+  uint64 ad_id = 3;
+}
+
+message CreateResponseResponse {
+  Response response = 1;
+}
+
+message GetResponsesRequest {
+  uint64 company_id = 1;
+  uint64 employee_id = 2;
+  uint64 limit = 3;
+  uint64 offset = 4;
+}
+
+message GetResponsesResponse {
+  repeated Response list = 1;
+  uint64 amount = 2;
+}
+
+message GetIndustriesResponse {
+  map <string, uint64> data = 1;
+}

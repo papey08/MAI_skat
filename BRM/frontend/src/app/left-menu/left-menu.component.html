@@ -1,0 +1,17 @@
+<div class="left-menu">
+  <mat-nav-list class="left-menu-flex">
+    <a [routerLink]="['/company']" class="menu-item" mat-list-item>Компания</a>
+    <a [routerLink]="['/leads']" class="menu-item" mat-list-item>Сделки</a>
+    <a [routerLink]="['/ads']" class="menu-item" mat-list-item>Объявления</a>
+    <a [routerLink]="['/contacts']" class="menu-item" mat-list-item>Контакты</a>
+    <a [routerLink]="['/employees']" class="menu-item" mat-list-item
+    >Сотрудники</a
+    >
+  </mat-nav-list>
+
+  <mat-nav-list class="left-menu-flex">
+    <a class="menu-item" mat-list-item>
+      <h3>{{ employeeName }}</h3>
+    </a>
+  </mat-nav-list>
+</div>

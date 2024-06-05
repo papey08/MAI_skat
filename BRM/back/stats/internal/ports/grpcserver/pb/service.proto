@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package stats;
+option go_package = "/pb";
+import "google/protobuf/empty.proto";
+
+service StatsService {
+  rpc GetCompanyMainPage(GetCompanyMainPageRequest) returns (GetCompanyMainPageResponse) {}
+  rpc SubmitClosedLead(SubmitClosedLeadRequest) returns (google.protobuf.Empty) {}
+}
+
+message Data {
+  uint64 active_leads_amount = 1;
+  uint64 active_leads_price = 2;
+  uint64 closed_leads_amount = 3;
+  uint64 closed_leads_price = 4;
+  uint64 active_ads_amount = 5;
+  double company_absolute_rating = 6;
+  double company_relative_rating = 7;
+}
+
+message GetCompanyMainPageRequest {
+  uint64 company_id = 1;
+}
+
+message GetCompanyMainPageResponse {
+  Data data = 1;
+}
+
+message SubmitClosedLeadRequest {
+  uint64 company_id = 1;
+  bool submit = 2;
+}

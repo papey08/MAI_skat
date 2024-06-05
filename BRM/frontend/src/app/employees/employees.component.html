@@ -1,0 +1,81 @@
+<mat-card>
+  <mat-card-header class="header">
+    <h2>Сотрудники</h2>
+    <button
+      (click)="createEmployee()"
+      color="primary"
+      id="create-button"
+      mat-raised-button
+    >
+      Добавить сотрудника
+    </button>
+  </mat-card-header>
+
+  <mat-card-content>
+    @for (employee of employees; track employee) {
+      <mat-card class="example-card">
+        <mat-card-header>
+          <mat-card-subtitle>
+            Департамент: {{ employee?.department }}
+          </mat-card-subtitle>
+          <mat-card-subtitle>
+            Должность: {{ employee?.job_title }}
+          </mat-card-subtitle>
+
+          <mat-card-title
+          >{{ employee?.first_name }}
+            {{ employee?.second_name }}
+          </mat-card-title
+          >
+        </mat-card-header>
+        <mat-card-content>
+          <div>
+            @if (employee?.imgLoad === false) {
+              <ngx-skeleton-loader
+                count="1"
+                [theme]="{
+              borderradius: '7',
+              'background-color': '#ccc',
+              'margin-top': '0',
+              'min-height': '5vh',
+              width: '105px'
+            }"
+              ></ngx-skeleton-loader>
+            }
+            <img
+              (load)="loadImage(employee!)"
+              [hidden]="employee?.imgLoad === false"
+              [src]="employee?.image_url"
+              alt=""
+              width="135px"
+              class="w-100 h-auto image-border"
+            />
+          </div>
+          <mat-divider></mat-divider>
+          <div class="block">
+            <mat-icon>email</mat-icon>
+            {{ employee?.email }}
+          </div>
+          <mat-divider></mat-divider>
+          <div class="block">
+            <button mat-button (click)="addToContacts(employee)" color="accent">
+              Добавить в контакты
+            </button>
+            <button mat-button (click)="editEmployee(employee)" color="accent">
+              Редактировать
+            </button>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    }
+
+    <mat-paginator
+      [length]="resultsLength"
+      [pageSizeOptions]="[3, 5, 10, 25]"
+      [pageSize]="3"
+      aria-label="Выберите страницу"
+      style="margin-top: 12px"
+    >
+    </mat-paginator>
+  </mat-card-content>
+</mat-card>

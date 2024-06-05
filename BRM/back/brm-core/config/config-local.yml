@@ -1,0 +1,14 @@
+"postgres-core":
+  "username": "root"
+  "host": "localhost"
+  "port": 5500
+  "dbname": "core-db"
+  "sslmode": "disable"
+
+"grpc-server":
+  "network": "tcp"
+  "port": 50000
+
+"grpc-auth-client":
+  "host": "localhost"
+  "port": 50001

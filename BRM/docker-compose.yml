@@ -1,0 +1,239 @@
+version: "3.9"
+
+services:
+  postgres-core:
+    image: postgres:15.5
+    container_name: postgres-core
+    environment:
+      POSTGRES_DB: core-db
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+    profiles: ["release", "dev_front", "dev_back"]
+    ports:
+      - "5500:5432"
+    volumes:
+      - ./back/brm-core/migrations/:/docker-entrypoint-initdb.d/
+      - core-data:/var/lib/postgresql/data
+
+  postgres-passwords:
+    image: postgres:15.5
+    container_name: postgres-passwords
+    environment:
+      POSTGRES_DB: passwords-db
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+    profiles: ["release", "dev_front", "dev_back"]
+    ports:
+      - "5501:5432"
+    volumes:
+      - ./back/auth/migrations/:/docker-entrypoint-initdb.d/
+      - passwords-data:/var/lib/postgresql/data
+
+  redis-tokens:
+    image: redis:7
+    container_name: redis-tokens
+    environment:
+      REDIS_PASSWORD: root
+      REDIS_DATABASES: 1
+    profiles: ["release", "dev_front", "dev_back"]
+    ports:
+      - "6000:6379"
+    volumes:
+      - tokens-data:/root/redis
+
+  postgres-ads:
+    image: postgres:15.5
+    container_name: postgres-ads
+    environment:
+      POSTGRES_DB: ads-db
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+    profiles: ["release", "dev_front", "dev_back"]
+    ports:
+      - "5502:5432"
+    volumes:
+      - ./back/brm-ads/migrations/:/docker-entrypoint-initdb.d/
+      - ads-data:/var/lib/postgresql/data
+
+  postgres-leads:
+    image: postgres:15.5
+    container_name: postgres-leads
+    environment:
+      POSTGRES_DB: leads-db
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+    profiles: ["release", "dev_front", "dev_back"]
+    ports:
+      - "5503:5432"
+    volumes:
+      - ./back/brm-leads/migrations/:/docker-entrypoint-initdb.d/
+      - leads-data:/var/lib/postgresql/data
+
+  redis-stats:
+    image: redis:7
+    container_name: redis-stats
+    environment:
+      REDIS_PASSWORD: root
+      REDIS_DATABASES: 1
+    profiles: ["release", "dev_front", "dev_back"]
+    ports:
+      - "6001:6379"
+    volumes:
+      - stats-data:/root/redis
+
+  postgres-notifications:
+    image: postgres:15.5
+    container_name: postgres-notifications
+    environment:
+      POSTGRES_DB: notifications-db
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+    profiles: ["release", "dev_front", "dev_back"]
+    ports:
+      - "5504:5432"
+    volumes:
+      - ./back/notifications/migrations/:/docker-entrypoint-initdb.d/
+      - notifications-data:/var/lib/postgresql/data
+
+  postgres-images:
+    image: postgres:15.5
+    container_name: postgres-images
+    environment:
+      POSTGRES_DB: images-db
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+    profiles: ["release", "dev_front", "dev_back"]
+    ports:
+      - "5505:5432"
+    volumes:
+      - ./back/images/migrations/:/docker-entrypoint-initdb.d/
+      - images-data:/var/lib/postgresql/data
+
+  brm-core:
+    build:
+      context: back/brm-core
+      dockerfile: Dockerfile
+    command: ./brm-core-app --docker
+    container_name: brm-core
+    profiles: ["release", "dev_front"]
+    ports:
+      - "50000:50000"
+    depends_on:
+      - postgres-core
+
+  brm-ads:
+    build:
+      context: back/brm-ads
+      dockerfile: Dockerfile
+    command: ./brm-ads-app --docker
+    container_name: brm-ads
+    profiles: ["release", "dev_front"]
+    ports:
+      - "50002:50002"
+    depends_on:
+      - postgres-ads
+
+  brm-leads:
+    build:
+      context: back/brm-leads
+      dockerfile: Dockerfile
+    command: ./brm-leads-app --docker
+    container_name: brm-leads
+    profiles: ["release", "dev_front"]
+    ports:
+      - "50003:50003"
+    depends_on:
+      - postgres-leads
+
+  transport-api:
+    build:
+      context: back/transport-api
+      dockerfile: Dockerfile
+    command: ./transport-api-app --docker
+    container_name: transport-api
+    profiles: ["release", "dev_front"]
+    ports:
+      - "8090:8090"
+    depends_on:
+      - brm-core
+      - auth
+
+  registration:
+    build:
+      context: back/registration
+      dockerfile: Dockerfile
+    command: ./registration-app --docker
+    container_name: registration
+    profiles: ["release", "dev_front"]
+    ports:
+      - "8091:8091"
+    depends_on:
+      - brm-core
+
+  auth:
+    build:
+      context: back/auth
+      dockerfile: Dockerfile
+    command: ./auth-app --docker
+    container_name: auth
+    profiles: ["release", "dev_front"]
+    ports:
+      - "50001:50001"
+      - "8092:8092"
+    depends_on:
+      - postgres-passwords
+      - redis-tokens
+
+  stats:
+    build:
+      context: back/stats
+      dockerfile: Dockerfile
+    command: ./stats-app --docker
+    container_name: stats
+    profiles: ["release", "dev_front"]
+    ports:
+      - "50004:50004"
+    depends_on:
+      - redis-stats
+
+  notifications:
+    build:
+      context: back/notifications
+      dockerfile: Dockerfile
+    command: ./notifications-app --docker
+    container_name: notifications
+    profiles: ["release", "dev_front"]
+    ports:
+      - "50005:50005"
+    depends_on:
+      - postgres-notifications
+
+  images:
+    build:
+      context: back/images
+      dockerfile: Dockerfile
+    command: ./images-app --docker
+    container_name: images
+    profiles: ["release", "dev_front"]
+    ports:
+      - "8093:8093"
+
+  frontend:
+    build:
+      context: frontend
+      dockerfile: Dockerfile
+    command: ""
+    container_name: frontend
+    profiles: ["release"]
+    ports:
+      - "4200:80"
+
+volumes:
+  core-data:
+  passwords-data:
+  tokens-data:
+  ads-data:
+  leads-data:
+  stats-data:
+  notifications-data:
+  images-data:

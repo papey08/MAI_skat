@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package stats;
+option go_package = "/pb";
+import "google/protobuf/empty.proto";
+
+service StatsService {
+  rpc SubmitClosedLead(SubmitClosedLeadRequest) returns (google.protobuf.Empty) {}
+}
+
+message SubmitClosedLeadRequest {
+  uint64 company_id = 1;
+  bool submit = 2;
+}

@@ -1,0 +1,21 @@
+.icons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.logo {
+  width: 80px;
+}
+
+.toolbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%
+}
+
+h1.example-app-name {
+  margin-left: 8px;
+}

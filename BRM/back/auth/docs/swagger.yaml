@@ -1,0 +1,142 @@
+basePath: /api/v1/auth
+definitions:
+  httpserver.loginRequest:
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+    type: object
+  httpserver.logoutRequest:
+    properties:
+      access:
+        type: string
+      refresh:
+        type: string
+    type: object
+  httpserver.refreshRequest:
+    properties:
+      access:
+        type: string
+      refresh:
+        type: string
+    type: object
+  httpserver.tokensData:
+    properties:
+      access:
+        type: string
+      refresh:
+        type: string
+    type: object
+  httpserver.tokensResponse:
+    properties:
+      data:
+        $ref: '#/definitions/httpserver.tokensData'
+      error:
+        type: string
+    type: object
+host: localhost:8092
+info:
+  contact: {}
+  description: Swagger документация к API авторизации
+  title: BRM API
+  version: "1.0"
+paths:
+  /login:
+    post:
+      consumes:
+      - application/json
+      description: Получает access и refresh-токены, используя аутентификацию по логину
+        и паролю
+      parameters:
+      - description: Логин и пароль
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/httpserver.loginRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Успешное получение токенов
+          schema:
+            $ref: '#/definitions/httpserver.tokensResponse'
+        "400":
+          description: Неверный формат входных данных
+          schema:
+            $ref: '#/definitions/httpserver.tokensResponse'
+        "403":
+          description: Неверный пароль
+          schema:
+            $ref: '#/definitions/httpserver.tokensResponse'
+        "404":
+          description: Пользователь с запрашиваемым email не найден
+          schema:
+            $ref: '#/definitions/httpserver.tokensResponse'
+        "500":
+          description: Проблемы на стороне сервера
+          schema:
+            $ref: '#/definitions/httpserver.tokensResponse'
+      summary: Получение токенов
+  /logout:
+    post:
+      consumes:
+      - application/json
+      description: Удаляет пару токенов
+      parameters:
+      - description: Пара токенов
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/httpserver.logoutRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Успешный выход из аккаунта
+          schema:
+            $ref: '#/definitions/httpserver.tokensResponse'
+        "400":
+          description: Неверный формат входных данных
+          schema:
+            $ref: '#/definitions/httpserver.tokensResponse'
+        "500":
+          description: Проблемы на стороне сервера
+          schema:
+            $ref: '#/definitions/httpserver.tokensResponse'
+      summary: Выход из аккаунта
+  /refresh:
+    post:
+      consumes:
+      - application/json
+      description: Обновляет access и refresh-токены, старая пара становится непригодной
+      parameters:
+      - description: Пара токенов
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/httpserver.refreshRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Успешное обновление токенов
+          schema:
+            $ref: '#/definitions/httpserver.tokensResponse'
+        "400":
+          description: Неверный формат входных данных
+          schema:
+            $ref: '#/definitions/httpserver.tokensResponse'
+        "404":
+          description: Пара токенов не найдена (refresh-токен истёк)
+          schema:
+            $ref: '#/definitions/httpserver.tokensResponse'
+        "500":
+          description: Проблемы на стороне сервера
+          schema:
+            $ref: '#/definitions/httpserver.tokensResponse'
+      summary: Обновление токенов
+swagger: "2.0"

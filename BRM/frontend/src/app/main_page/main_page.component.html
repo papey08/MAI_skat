@@ -1,0 +1,57 @@
+<mat-card>
+  <mat-card-header>
+    <h2>Статистика компании</h2>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="container">
+      <mat-card class="example-card">
+        <mat-card-header>
+          <div class="active-leads-header-image" mat-card-avatar></div>
+          <mat-card-title>Активных сделок:   {{ mainPage?.data?.active_leads_amount ?? '' }}</mat-card-title>
+          <mat-card-subtitle>
+            <p>
+              На сумму: {{ mainPage?.data?.active_leads_price ?? '' }} руб.
+            </p>
+          </mat-card-subtitle>
+        </mat-card-header>
+      </mat-card>
+
+      <mat-card class="example-card">
+        <mat-card-header>
+          <div class="closed-leads-header-image" mat-card-avatar></div>
+          <mat-card-title>Закрыто сделок:   {{ mainPage?.data?.closed_leads_amount ?? '' }}</mat-card-title>
+          <mat-card-subtitle>
+            <p>
+              На сумму: {{ mainPage?.data?.closed_leads_price ?? '' }} руб.
+            </p>
+          </mat-card-subtitle>
+        </mat-card-header>
+      </mat-card>
+
+      <mat-card class="example-card">
+        <mat-card-header>
+          <div class="active-ads-header-image" mat-card-avatar></div>
+          <mat-card-title>Активных объявлений:  {{ mainPage?.data?.active_ads_amount ?? '' }}</mat-card-title>
+        </mat-card-header>
+      </mat-card>
+
+      <mat-card class="example-card">
+        <mat-card-header>
+          <div class="rating-header-image" mat-card-avatar></div>
+          <mat-card-title> Рейтинг компании:{{ mainPage?.data?.company_absolute_rating ?? '' }}</mat-card-title>
+          <mat-card-subtitle>
+            <p>
+              Это выше, чем у {{ mainPage?.data?.company_relative_rating ?? '' }}% компаний
+            </p>
+          </mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-content>
+
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+  </mat-card-content>
+
+</mat-card>

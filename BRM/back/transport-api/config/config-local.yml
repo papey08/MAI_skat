@@ -1,0 +1,22 @@
+"grpc-clients":
+  "core":
+    "host": "localhost"
+    "port": 50000
+  "ads":
+    "host": "localhost"
+    "port": 50002
+  "leads":
+    "host": "localhost"
+    "port": 50003
+  "stats":
+    "host": "localhost"
+    "port": 50004
+  "notifications":
+    "host": "localhost"
+    "port": 50005
+
+"http-server":
+  "host": "localhost"
+  "port": 8090
+
+"origins": ["http://localhost:4200", "http://localhost:80"]

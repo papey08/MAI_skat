@@ -1,0 +1,26 @@
+.fields {
+  display: flex;
+  flex-direction: column;
+}
+
+.text-wrapper {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.centered {
+  font-family: sans-serif;
+  font-size: 1.3em;
+  font-weight: bold;
+  text-align: center;
+  color: dimgray;
+}
+
+.dropzone {
+  min-height: 300px;
+  width: 300px;
+  background-color: #eee;
+  display: table;
+  border: dotted 1px #aaa;
+  margin-bottom: 12px;
+}

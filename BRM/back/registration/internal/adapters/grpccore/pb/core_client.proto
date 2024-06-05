@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+package core;
+option go_package = "/pb";
+import "google/protobuf/empty.proto";
+
+service CoreService {
+  rpc CreateCompanyAndOwner(CreateCompanyAndOwnerRequest) returns (CreateCompanyAndOwnerResponse) {}
+  rpc GetIndustries(google.protobuf.Empty) returns (GetIndustriesResponse) {}
+}
+
+message Company {
+  uint64 id = 1;
+  string name = 2;
+  string description = 3;
+  string industry = 4;
+  uint64 owner_id = 5;
+  double rating = 6;
+  int64 creation_date = 7;
+  bool is_deleted = 8;
+}
+
+message Employee {
+  uint64 id = 1;
+  uint64 company_id = 2;
+  string first_name = 3;
+  string second_name = 4;
+  string email = 5;
+  string password = 6;
+  string job_title = 7;
+  string department = 8;
+  int64 creation_date = 9;
+  bool is_deleted = 10;
+}
+
+message CreateCompanyAndOwnerRequest {
+  Company company = 1;
+  Employee owner = 2;
+}
+
+message CreateCompanyAndOwnerResponse {
+  Company company = 1;
+  Employee owner = 2;
+}
+
+message GetIndustriesResponse {
+  map <string, uint64> data = 1;
+}

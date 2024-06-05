@@ -1,0 +1,61 @@
+<mat-card>
+  <mat-card-header>
+    <div>
+      <button
+        (click)="openAdsPage()"
+        color="primary"
+        mat-raised-button
+      >
+        Назад
+      </button>
+      <h2>Отклики вашей компании</h2>
+    </div>
+  </mat-card-header>
+  <mat-card-content>
+    @for (response of responses; track response) {
+      <mat-card class="example-card">
+        <mat-card-header>
+          <mat-card-subtitle>
+            Компания: {{ response.company_name }}
+          </mat-card-subtitle>
+
+          <mat-card-title>{{ response.title }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div>
+            @if (!response.imgLoad) {
+              <ngx-skeleton-loader
+
+                count="1"
+                [theme]="{
+      borderradius: '7',
+      'background-color': '#ccc',
+      'margin-top': '0',
+      'min-height': '5vh',
+      width: '105px'
+    }"
+              ></ngx-skeleton-loader>
+            }
+            <img
+              (load)="loadImage(response)"
+              [hidden]="response?.imgLoad === false"
+              [src]="response.image_url"
+              alt=""
+              width="135px"
+              class="w-100 h-auto image-border"
+            />
+          </div>
+          Цена: {{ response.price }}₽
+        </mat-card-content>
+      </mat-card>
+    }
+
+    <mat-paginator
+      [length]="resultsLength"
+      [pageSizeOptions]="[3, 5, 10, 25]"
+      [pageSize]="3"
+      aria-label="Выберите страницу"
+      style="margin-top: 12px">
+    </mat-paginator>
+  </mat-card-content>
+</mat-card>

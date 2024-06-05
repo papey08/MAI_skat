@@ -1,0 +1,63 @@
+<h2 mat-dialog-title>Сделка</h2>
+<mat-dialog-content class="fields">
+  <mat-form-field>
+    <mat-label>Название товара</mat-label>
+    <input [formControl]="leadFormGroup.controls.title" matInput>
+    @if (leadFormGroup.controls.title.invalid) {
+      <mat-error>Название сделки не должно быть длиннее 200 символов</mat-error>
+    }
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Статус</mat-label>
+    <mat-select [formControl]="leadFormGroup.controls.status">
+      @if (statuses) {
+        @for (status of statuses | keyvalue; track status) {
+          <mat-option [value]="status.key">{{ status.key }}</mat-option>
+        }
+      }
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Ответственный</mat-label>
+    <mat-select [formControl]="leadFormGroup.controls.responsible">
+      @if (employees) {
+        @for (employee of employees | keyvalue; track employee) {
+          <mat-option [value]="employee.key.toString()">{{ employee.value }}</mat-option>
+        }
+      }
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Цена</mat-label>
+    <input [formControl]="leadFormGroup.controls.price" matInput type="number">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Описание</mat-label>
+    <textarea [formControl]="leadFormGroup.controls.description" matInput> </textarea>
+    @if (leadFormGroup.controls.description.invalid) {
+      <mat-error>Описание не должно быть длиннее 1000 символов</mat-error>
+    }
+  </mat-form-field>
+
+  <p>
+    Компания-клиент: {{ lead?.data?.client_company_name }}
+  </p>
+  <p>
+    Ответственный: {{ lead?.data?.client_employee_second_name }} {{ lead?.data?.client_employee_first_name }}
+  </p>
+  <button
+    (click)="addToContacts()"
+    cdkFocusInitial
+    color="primary"
+    mat-button
+  >
+    Добавить в контакты
+  </button>
+
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button color="accent" mat-button mat-dialog-close>Выйти</button>
+  <button (click)="editLead()" cdkFocusInitial color="primary" mat-button>
+    Сохранить
+  </button>
+</mat-dialog-actions>

@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package ads;
+option go_package = "/pb";
+
+service AdsService {
+  rpc GetAdById(GetAdByIdRequest) returns (GetAdByIdResponse) {}
+}
+
+message Ad {
+  uint64 id = 1;
+  uint64 company_id = 2;
+  string title = 3;
+  string text = 4;
+  uint64 industry = 5;
+  uint64 price = 6;
+  int64 creation_date = 7;
+  uint64 created_by = 8;
+  uint64 responsible = 9;
+  bool is_deleted = 10;
+}
+
+message GetAdByIdRequest {
+  uint64 id = 1;
+}
+
+message GetAdByIdResponse {
+  Ad ad = 1;
+}

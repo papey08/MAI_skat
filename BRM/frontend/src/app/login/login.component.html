@@ -1,0 +1,35 @@
+<div class="login">
+  <img height="200px" src="assets/logo.svg"/>
+  <form (ngSubmit)="onSubmit()" [formGroup]="form" class="login-form">
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label>Введите email</mat-label>
+        <input
+          formControlName="email"
+          matInput
+          placeholder="Email"
+          type="text"
+        />
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label>Введите пароль</mat-label>
+        <input
+          formControlName="password"
+          matInput
+          placeholder="Password"
+          type="password"
+        />
+      </mat-form-field>
+    </div>
+    <div>
+      <button class="submit-button" mat-raised-button type="submit">
+        Войти
+      </button>
+      <button (click)="signUp()" class="submit-button" mat-raised-button>
+        Зарегистрироваться
+      </button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,73 @@
+basePath: /api/v1
+definitions:
+  httpserver.idResponse:
+    properties:
+      data:
+        type: integer
+      err:
+        type: string
+    type: object
+host: localhost:8093
+info:
+  contact: {}
+  description: Swagger документация к API сервиса для хранения изображений
+  title: BRM API
+  version: "1.0"
+paths:
+  /images:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Добавляет изображение
+      parameters:
+      - description: Изображение
+        in: formData
+        name: file
+        required: true
+        type: file
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Успешное добавление изображения
+          schema:
+            $ref: '#/definitions/httpserver.idResponse'
+        "400":
+          description: Неверный формат входных данных
+          schema:
+            $ref: '#/definitions/httpserver.idResponse'
+        "500":
+          description: Проблемы на стороне сервера
+          schema:
+            $ref: '#/definitions/httpserver.idResponse'
+      summary: Добавление изображения
+  /images/{id}:
+    get:
+      description: Получает изображение
+      parameters:
+      - description: id изображения
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - image/png
+      responses:
+        "200":
+          description: Успешное получение изображения
+          schema:
+            type: file
+        "400":
+          description: Неверный формат входных данных
+          schema:
+            $ref: '#/definitions/httpserver.idResponse'
+        "404":
+          description: Изображение не найдено
+          schema:
+            $ref: '#/definitions/httpserver.idResponse'
+        "500":
+          description: Проблемы на стороне сервера
+          schema:
+            $ref: '#/definitions/httpserver.idResponse'
+      summary: Получение изображения
+swagger: "2.0"

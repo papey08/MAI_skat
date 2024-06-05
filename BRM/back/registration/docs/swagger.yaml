@@ -1,0 +1,152 @@
+basePath: /api/v1
+definitions:
+  httpserver.addCompanyAndOwnerRequest:
+    properties:
+      company:
+        $ref: '#/definitions/httpserver.addCompanyData'
+      owner:
+        $ref: '#/definitions/httpserver.addOwnerData'
+    type: object
+  httpserver.addCompanyData:
+    properties:
+      description:
+        type: string
+      industry:
+        type: string
+      name:
+        type: string
+    type: object
+  httpserver.addOwnerData:
+    properties:
+      department:
+        type: string
+      email:
+        type: string
+      first_name:
+        type: string
+      job_title:
+        type: string
+      password:
+        type: string
+      second_name:
+        type: string
+    type: object
+  httpserver.companyAndOwnerData:
+    properties:
+      company:
+        $ref: '#/definitions/httpserver.companyData'
+      owner:
+        $ref: '#/definitions/httpserver.ownerData'
+    type: object
+  httpserver.companyAndOwnerResponse:
+    properties:
+      data:
+        $ref: '#/definitions/httpserver.companyAndOwnerData'
+      err:
+        type: string
+    type: object
+  httpserver.companyData:
+    properties:
+      creation_date:
+        type: integer
+      description:
+        type: string
+      id:
+        type: integer
+      industry:
+        type: string
+      is_deleted:
+        type: boolean
+      name:
+        type: string
+      owner_id:
+        type: integer
+      rating:
+        type: number
+    type: object
+  httpserver.industriesResponse:
+    properties:
+      data:
+        additionalProperties:
+          type: integer
+        type: object
+      error:
+        type: string
+    type: object
+  httpserver.ownerData:
+    properties:
+      company_id:
+        type: integer
+      creation_date:
+        type: integer
+      department:
+        type: string
+      email:
+        type: string
+      first_name:
+        type: string
+      id:
+        type: integer
+      is_deleted:
+        type: boolean
+      job_title:
+        type: string
+      second_name:
+        type: string
+    type: object
+host: localhost:8091
+info:
+  contact: {}
+  description: Swagger документация к API
+  title: BRM API
+  version: "1.0"
+paths:
+  /companies/industries:
+    get:
+      description: Возвращает словарь из отраслей и их id
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Успешное получение данных
+          schema:
+            $ref: '#/definitions/httpserver.industriesResponse'
+        "500":
+          description: Проблемы на стороне сервера
+          schema:
+            $ref: '#/definitions/httpserver.industriesResponse'
+      summary: Получение отраслей
+  /register:
+    post:
+      consumes:
+      - application/json
+      description: Добавляет новую компанию и её владельца, который является её первым
+        сотрудником, одним запросом
+      parameters:
+      - description: Информация о компании и её владельце
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/httpserver.addCompanyAndOwnerRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Успешное добавление компании с владельцем
+          schema:
+            $ref: '#/definitions/httpserver.companyAndOwnerResponse'
+        "400":
+          description: Неверный формат входных данных
+          schema:
+            $ref: '#/definitions/httpserver.companyAndOwnerResponse'
+        "404":
+          description: Попытка создать компанию в несуществующей индустрии
+          schema:
+            $ref: '#/definitions/httpserver.companyAndOwnerResponse'
+        "500":
+          description: Проблемы на стороне сервера
+          schema:
+            $ref: '#/definitions/httpserver.companyAndOwnerResponse'
+      summary: Добавление новой компании и владельца
+swagger: "2.0"

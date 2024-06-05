@@ -1,0 +1,149 @@
+<div class="login">
+  <img height="200px" src="assets/logo.svg"/>
+
+  <form (ngSubmit)="onSubmit()" [formGroup]="form" class="login-form">
+    <div>
+      <h2>Компания:</h2>
+      <div>
+        <mat-form-field appearance="fill">
+          <mat-label>Название</mat-label>
+          <input
+            [formControl]="name"
+            matInput
+            placeholder="Название"
+            type="text"
+          />
+          @if (name.invalid) {
+            <mat-error>Название компании не должно быть длиннее 100 символов</mat-error>
+          }
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field appearance="fill" type="textarea">
+          <mat-label>Описание</mat-label>
+          <textarea
+            [formControl]="description"
+            matInput
+            placeholder="Описание"
+            type="text">
+          </textarea>
+          @if (description.invalid) {
+            <mat-error>Описание компании не должно быть длиннее 1000 символов</mat-error>
+          }
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <mat-label>Отрасль</mat-label>
+          <mat-select [formControl]="industry">
+            <mat-option>--</mat-option>
+            @for (industry of industries | keyvalue; track industry) {
+              <mat-option [value]="industry.key">{{ industry.key }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    <div>
+      <h2>Владелец:</h2>
+      <div>
+        <mat-form-field appearance="fill">
+          <mat-label>Имя</mat-label>
+          <input
+            [formControl]="first_name"
+            matInput
+            placeholder="Имя"
+            type="text"
+          />
+          @if (first_name.invalid) {
+            <mat-error>Имя не должно быть длиннее 100 символов</mat-error>
+          }
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field appearance="fill">
+          <mat-label>Фамилия</mat-label>
+          <input
+            [formControl]="second_name"
+            matInput
+            placeholder="Фамилия"
+            type="text"
+          />
+          @if (second_name.invalid) {
+            <mat-error>Имя не должно быть длиннее 100 символов</mat-error>
+          }
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field appearance="fill">
+          <mat-label>Почта</mat-label>
+          <input
+            [formControl]="email"
+            matInput
+            placeholder="Почта"
+            type="text"
+          />
+          @if (email.invalid) {
+            <mat-error>Почта должна быть корректной</mat-error>
+          }
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field appearance="fill">
+          <mat-label>Пароль</mat-label>
+          <input
+            [formControl]="password"
+            matInput
+            placeholder="Пароль"
+            type="password"
+          />
+          @if (password.invalid) {
+            <mat-error>Длина пароля должна быть от 8 до 24 символов, состоять только из символов латинского алфавита,
+              цифр, и знаков пунктуации
+            </mat-error>
+          }
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field appearance="fill">
+          <mat-label>Должность</mat-label>
+          <input
+            [formControl]="job_title"
+            matInput
+            placeholder="Должность"
+            type="text"
+          />
+          @if (job_title.invalid) {
+            <mat-error>Должность не должна быть длиннее 100 символов</mat-error>
+          }
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field appearance="fill">
+          <mat-label>Департамент</mat-label>
+          <input
+            [formControl]="department"
+            matInput
+            placeholder="Департамент"
+            type="text"
+          />
+          @if (department.invalid) {
+            <mat-error>Департамент не должен быть длиннее 100 символов</mat-error>
+          }
+        </mat-form-field>
+      </div>
+    </div>
+    <div>
+      <button class="submit-button" mat-raised-button type="submit">
+        Зарегистрироваться
+      </button>
+      <button
+        (click)="redirectToLogin()"
+        class="submit-button"
+        mat-raised-button
+      >
+        Вернуться
+      </button>
+    </div>
+  </form>
+</div>

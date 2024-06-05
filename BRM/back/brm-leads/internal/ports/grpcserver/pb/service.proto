@@ -1,0 +1,92 @@
+syntax = "proto3";
+
+package leads;
+option go_package = "/pb";
+import "google/protobuf/empty.proto";
+
+service LeadsService {
+  rpc CreateLead(CreateLeadRequest) returns (CreateLeadResponse) {}
+  rpc GetLeads(GetLeadsRequest) returns (GetLeadsResponse) {}
+  rpc GetLeadById(GetLeadByIdRequest) returns (GetLeadByIdResponse) {}
+  rpc UpdateLead(UpdateLeadRequest) returns (UpdateLeadResponse) {}
+
+  rpc GetStatuses(google.protobuf.Empty) returns (GetStatusesResponse) {}
+}
+
+message Lead {
+  uint64 id = 1;
+  uint64 ad_id = 2;
+  string title = 3;
+  string description = 4;
+  uint64 price = 5;
+  string status = 6;
+  uint64 responsible = 7;
+  uint64 company_id = 8;
+  uint64 client_company = 9;
+  uint64 client_employee = 10;
+  int64 creation_date = 11;
+  bool is_deleted = 12;
+}
+
+message Filter {
+  uint64 limit = 1;
+  uint64 offset = 2;
+  string status = 3;
+  bool by_status = 4;
+  uint64 responsible = 5;
+  bool by_responsible = 6;
+}
+
+message UpdateLead {
+  string title = 1;
+  string description = 2;
+  uint64 price = 3;
+  string status = 4;
+  uint64 responsible = 5;
+}
+
+message CreateLeadRequest {
+  uint64 ad_id = 1;
+  uint64 client_company = 2;
+  uint64 client_employee = 3;
+}
+
+message CreateLeadResponse {
+  Lead lead = 1;
+}
+
+message GetLeadsRequest {
+  uint64 company_id = 1;
+  uint64 employee_id = 2;
+  Filter filter = 3;
+}
+
+message GetLeadsResponse {
+  repeated Lead leads = 1;
+  uint64 amount = 2;
+}
+
+message GetLeadByIdRequest {
+  uint64 company_id = 1;
+  uint64 employee_id = 2;
+  uint64 lead_id = 3;
+}
+
+message GetLeadByIdResponse {
+  Lead lead = 1;
+}
+
+message UpdateLeadRequest {
+  uint64 company_id = 1;
+  uint64 employee_id = 2;
+  uint64 id = 3;
+  UpdateLead upd = 4;
+}
+
+message UpdateLeadResponse {
+  Lead lead = 1;
+}
+
+message GetStatusesResponse {
+  map <string, uint64> data = 1;
+}

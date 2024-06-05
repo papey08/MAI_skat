@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package auth;
+option go_package = "/pb";
+import "google/protobuf/empty.proto";
+
+service AuthService {
+  rpc RegisterEmployee(RegisterEmployeeRequest) returns (google.protobuf.Empty) {}
+  rpc DeleteEmployee(DeleteEmployeeRequest) returns (google.protobuf.Empty) {}
+}
+
+message RegisterEmployeeRequest {
+  string email = 1;
+  string password = 2;
+  uint64 employee_id = 3;
+  uint64 company_id = 4;
+}
+
+message  DeleteEmployeeRequest {
+  string email = 1;
+}

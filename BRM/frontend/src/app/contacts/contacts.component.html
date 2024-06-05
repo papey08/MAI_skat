@@ -1,0 +1,74 @@
+<mat-card>
+  <mat-card-header>
+    <h2>Контакты</h2>
+  </mat-card-header>
+  <mat-card-content>
+    @for (contact of contacts; track contact) {
+      <mat-card class="example-card">
+        <mat-card-header>
+          <mat-card-subtitle>
+            Компания: {{ contact.employee?.company_name }}
+          </mat-card-subtitle>
+
+          <mat-card-subtitle> Департамент: {{ contact.employee?.department }}
+          </mat-card-subtitle>
+          <mat-card-subtitle>
+            Должность: {{ contact.employee?.job_title }}
+          </mat-card-subtitle>
+
+          <mat-card-title>{{ contact.employee?.first_name }} {{ contact.employee?.second_name }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div>
+            @if (contact.employee?.imgLoad === false) {
+              <ngx-skeleton-loader
+
+                count="1"
+                [theme]="{
+      borderradius: '7',
+      'background-color': '#ccc',
+      'margin-top': '0',
+      'min-height': '5vh',
+      width: '105px'
+    }"
+              ></ngx-skeleton-loader>
+            }
+            <img
+              (load)="loadImage(contact.employee!)"
+              [hidden]="contact.employee?.imgLoad === false"
+              [src]="contact.employee?.image_url"
+              alt=""
+              width="135px"
+              class="w-100 h-auto image-border"
+            />
+          </div>
+          <mat-divider></mat-divider>
+          <div class="block">
+            <div>
+              <mat-icon>notes</mat-icon>
+              <span>{{ contact.notes }}</span>
+            </div>
+            <div>
+              <button (click)="openDialog(contact)" mat-icon-button color="accent">
+                <mat-icon>edit</mat-icon>
+              </button>
+            </div>
+          </div>
+          <mat-divider></mat-divider>
+          <div class="block">
+            <mat-icon>email</mat-icon>
+            {{ contact.employee?.email }}
+          </div>
+        </mat-card-content>
+      </mat-card>
+    }
+
+    <mat-paginator
+      [length]="resultsLength"
+      [pageSizeOptions]="[3, 5, 10, 25]"
+      [pageSize]="3"
+      aria-label="Выберите страницу"
+      style="margin-top: 12px">
+    </mat-paginator>
+  </mat-card-content>
+</mat-card>

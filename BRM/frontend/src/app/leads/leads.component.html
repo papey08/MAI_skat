@@ -1,0 +1,39 @@
+<mat-card>
+  <mat-card-header>
+    <h2>Сделки</h2>
+  </mat-card-header>
+  <div class="board">
+    <div class="board-wrapper">
+      <div class="board-columns">
+        @for (column of columns; track column) {
+          <div class="board-column">
+            <div class="column-title">
+              {{ column }}
+            </div>
+
+            <div class="tasks-container">
+              @if (leads) {
+                @for (lead of filter(column, leads); track lead) {
+                  <mat-card class="task" (click)="openLead(lead)">
+                    <mat-card-header>
+                      <mat-card-title>{{ lead.title }}</mat-card-title>
+                      <mat-card-subtitle>Цена: {{ lead.price }}₽</mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-content>
+                      <p>
+                        {{ lead.description }}
+                      </p>
+                    </mat-card-content>
+                    <mat-card-actions>
+                      <button mat-button color="accent">Редактировать</button>
+                    </mat-card-actions>
+                  </mat-card>
+                }
+              }
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</mat-card>

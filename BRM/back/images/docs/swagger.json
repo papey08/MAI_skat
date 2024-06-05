@@ -1,0 +1,111 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "Swagger документация к API сервиса для хранения изображений",
+        "title": "BRM API",
+        "contact": {},
+        "version": "1.0"
+    },
+    "host": "localhost:8093",
+    "basePath": "/api/v1",
+    "paths": {
+        "/images": {
+            "post": {
+                "description": "Добавляет изображение",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Добавление изображения",
+                "parameters": [
+                    {
+                        "type": "file",
+                        "description": "Изображение",
+                        "name": "file",
+                        "in": "formData",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Успешное добавление изображения",
+                        "schema": {
+                            "$ref": "#/definitions/httpserver.idResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Неверный формат входных данных",
+                        "schema": {
+                            "$ref": "#/definitions/httpserver.idResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Проблемы на стороне сервера",
+                        "schema": {
+                            "$ref": "#/definitions/httpserver.idResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/images/{id}": {
+            "get": {
+                "description": "Получает изображение",
+                "produces": [
+                    "image/png"
+                ],
+                "summary": "Получение изображения",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "id изображения",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Успешное получение изображения",
+                        "schema": {
+                            "type": "file"
+                        }
+                    },
+                    "400": {
+                        "description": "Неверный формат входных данных",
+                        "schema": {
+                            "$ref": "#/definitions/httpserver.idResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Изображение не найдено",
+                        "schema": {
+                            "$ref": "#/definitions/httpserver.idResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Проблемы на стороне сервера",
+                        "schema": {
+                            "$ref": "#/definitions/httpserver.idResponse"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "httpserver.idResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "integer"
+                },
+                "err": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

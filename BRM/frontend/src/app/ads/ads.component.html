@@ -1,0 +1,139 @@
+<mat-card>
+  <mat-card-header>
+    <div class="header">
+      <h2>Объявления</h2>
+      <button
+        (click)="openCompanyResponsesPage()"
+        color="primary"
+        mat-raised-button
+      >
+        Отклики вашей компании
+      </button>
+    </div>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="add-header">
+      <h2>Объявления вашей компании</h2>
+      <button
+        (click)="createAd()"
+        color="primary"
+        id="create-button"
+        mat-raised-button
+      >
+        Создать объявление
+      </button>
+    </div>
+    <mat-grid-list cols="6" rowHeight="400px">
+      @for (ad of myCompanyAds; track ad) {
+        <mat-grid-tile>
+          <mat-card class="example-card" (click)="openAdCard(ad)">
+            <mat-card-header>
+              <mat-card-subtitle (click)="openCompany($event, ad.company_id)">
+                Компания: {{ ad.company_name }}
+              </mat-card-subtitle>
+              <mat-card-title>{{ ad.title }}</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <div>
+                @if (ad.imgLoad === false) {
+                  <ngx-skeleton-loader
+                    count="1"
+                    [theme]="{
+                  borderradius: '7',
+                  'background-color': '#ccc',
+                  'margin-top': '0',
+                  'min-height': '5vh',
+                  width: '75px'
+                }"
+                  ></ngx-skeleton-loader>
+                }
+                <img
+                  (load)="loadImage(ad)"
+                  [hidden]="ad.imgLoad === false"
+                  [src]="ad.image_url"
+                  mat-card-image
+                  width="180px"
+                  height="180px"
+                  alt=""
+                />
+              </div>
+              <mat-divider></mat-divider>
+              <div class="block">
+                <mat-icon>notes</mat-icon>
+                {{ ad.text }}
+              </div>
+              <mat-divider></mat-divider>
+              <div class="block">Цена: {{ ad.price }}₽</div>
+            </mat-card-content>
+            <mat-card-actions>
+              <button mat-button (click)="response($event, ad)" color="accent">
+                Откликнуться
+              </button>
+            </mat-card-actions>
+          </mat-card>
+        </mat-grid-tile>
+      }
+    </mat-grid-list>
+
+    <h2>Все объявления</h2>
+    <mat-grid-list cols="6" rowHeight="400px">
+      @for (ad of otherCompaniesAds; track ad) {
+        <mat-grid-tile>
+          <mat-card class="example-card" (click)="openAdCard(ad)">
+            <mat-card-header>
+              <mat-card-subtitle (click)="openCompany($event, ad.company_id)">
+                Компания: {{ ad.company_name }}
+              </mat-card-subtitle>
+              <mat-card-title>{{ ad.title }}</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <div>
+                @if (ad.imgLoad === false) {
+                  <ngx-skeleton-loader
+                    count="1"
+                    [theme]="{
+                  borderradius: '7',
+                  'background-color': '#ccc',
+                  'margin-top': '0',
+                  'min-height': '5vh',
+                  width: '75px'
+                }"
+                  ></ngx-skeleton-loader>
+                }
+                <img
+                  (load)="loadImage(ad)"
+                  [hidden]="ad.imgLoad === false"
+                  [src]="ad.image_url"
+                  alt=""
+                  width="180px"
+                  height="180px"
+                  mat-card-image
+                />
+              </div>
+              <mat-divider></mat-divider>
+              <div class="block">
+                <mat-icon>notes</mat-icon>
+                {{ ad.text }}
+              </div>
+              <mat-divider></mat-divider>
+              <div class="block">Цена: {{ ad.price }}₽</div>
+            </mat-card-content>
+            <mat-card-actions>
+              <button mat-button (click)="response($event, ad)" color="accent">
+                Откликнуться
+              </button>
+            </mat-card-actions>
+          </mat-card>
+        </mat-grid-tile>
+      }
+    </mat-grid-list>
+
+    <mat-paginator
+      [length]="resultsLength"
+      [pageSizeOptions]="[5, 10, 25, 100]"
+      [pageSize]="5"
+      aria-label="Выберите страницу"
+    >
+    </mat-paginator>
+  </mat-card-content>
+</mat-card>

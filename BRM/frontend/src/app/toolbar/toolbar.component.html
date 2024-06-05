@@ -1,0 +1,20 @@
+<div class="toolbar">
+  <div class="icons">
+    <button (click)="snav.toggle()" mat-icon-button>
+      <mat-icon>menu</mat-icon>
+    </button>
+    <img (click)="redirectToMainPage()" class="logo" src="assets/logo.svg"/>
+    <h1 class="example-app-name">{{ companyName }}</h1>
+  </div>
+  <div>
+    <button (click)="changeMode()" color="primary" mat-icon-button>
+      <mat-icon>{{ switchTheme.value ? "light_mode" : "dark_mode" }}</mat-icon>
+    </button>
+    <button (click)="redirectToNotifications()" color="primary" mat-icon-button>
+      <mat-icon>notifications</mat-icon>
+    </button>
+    <button (click)="logout()" color="primary" mat-icon-button>
+      <mat-icon>logout</mat-icon>
+    </button>
+  </div>
+</div>

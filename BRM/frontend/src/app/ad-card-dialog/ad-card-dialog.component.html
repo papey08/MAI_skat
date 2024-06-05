@@ -1,0 +1,51 @@
+<h2 mat-dialog-title>Объявление</h2>
+<mat-dialog-content class="fields">
+
+  <img
+    [src]="adData.image_url"
+    alt=""
+    class="w-100 h-auto image-border"
+    width="135px"
+  />
+
+  <mat-form-field>
+    <mat-label>Название товара</mat-label>
+    <input [formControl]="adFormGroup.controls.title" matInput readonly/>
+    @if (adFormGroup.controls.title.invalid) {
+      <mat-error>Название не должно быть длиннее 200 символов</mat-error>
+    }
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Цена</mat-label>
+    <input [formControl]="adFormGroup.controls.price" matInput readonly type="number"/>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Описание</mat-label>
+    <input [formControl]="adFormGroup.controls.text" matInput readonly/>
+    @if (adFormGroup.controls.text.invalid) {
+      <mat-error>Описание не должно быть длиннее 1000 символов</mat-error>
+    }
+  </mat-form-field>
+  Ответственный: {{ responsible?.data.second_name }} {{ responsible?.data.first_name }}
+  <button
+    (click)="addToContacts()"
+    [hidden]="isThisCompanyAd"
+    cdkFocusInitial
+    color="primary"
+    mat-button
+  >
+    Добавить в контакты
+  </button>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button color="accent" mat-button mat-dialog-close>Выйти</button>
+  <button
+    (click)="response()"
+    [hidden]="isThisCompanyAd"
+    cdkFocusInitial
+    color="primary"
+    mat-button
+  >
+    Откликнуться
+  </button>
+</mat-dialog-actions>

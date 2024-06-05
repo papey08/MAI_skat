@@ -1,0 +1,35 @@
+.closed-leads-header-image {
+  background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8thit5dyK9T3sljabIz7WadrbDt8nJgCJ8aXHsxWR8A&s');
+  background-size: cover;
+}
+
+.active-leads-header-image {
+  background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQI_7DfzQ-m0tP1sdML27H1KSe-y9d-Ke9bfQwu3Kykpw&s');
+  background-size: cover;
+}
+
+.active-ads-header-image {
+  background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNEr6nBV9s4VK764vJ03v3iS4hsr7__YTH7p7Zym3nyA&s');
+  background-size: cover;
+}
+
+.rating-header-image {
+  background-image: url('https://i.pinimg.com/564x/dd/55/03/dd550382b64959df43602b1450bbbde5.jpg');
+  background-size: cover;
+}
+
+.example-card {
+  width: 400px;
+  height: 100px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  margin-left: 40%;
+}
+
+.card {
+  height: 600px;
+}

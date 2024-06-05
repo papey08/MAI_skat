@@ -1,0 +1,21 @@
+"postgres-leads":
+  "username": "root"
+  "host": "localhost"
+  "port": 5503
+  "dbname": "leads-db"
+  "sslmode": "disable"
+
+"grpc-clients":
+  "core":
+    "host": "localhost"
+    "port": 50000
+  "ads":
+    "host": "localhost"
+    "port": 50002
+  "notifications":
+    "host": "localhost"
+    "port": 50005
+
+"grpc-server":
+  "network": "tcp"
+  "port": 50003

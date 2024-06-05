@@ -1,0 +1,10 @@
+"grpc-clients":
+  "core":
+    "host": "brm-core"
+    "port": 50000
+
+"http-server":
+  "host": "registration"
+  "port": 8091
+
+"origins": ["http://localhost:4200", "http://localhost:80"]

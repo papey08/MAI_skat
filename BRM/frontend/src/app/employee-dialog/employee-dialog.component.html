@@ -1,0 +1,61 @@
+<h2 mat-dialog-title>{{ employee.second_name }} {{ employee.first_name }}</h2>
+<mat-dialog-content class="fields">
+  Перетащите картинку сюда @if (!file) {
+  <div
+    style="height: 200px; margin-bottom: 12px"
+    appDrag
+    (files)="filesDropped($event)"
+  >
+    <div class="text-wrapper">
+      <div class="centered"></div>
+    </div>
+  </div>
+}
+  <div>
+    @if (file) {
+      <img [src]="file.url" width="600px" height="400px"/>
+    } @else if (employee.image_url) {
+      <img [src]="employee.image_url" width="600px" height="400px" appDrag
+           (files)="filesDropped($event)"/>
+    }
+  </div>
+  <mat-form-field>
+    <mat-label>Департамент</mat-label>
+    <input [formControl]="employeeFormGroup.controls.department" matInput/>
+    @if (employeeFormGroup.controls.department.invalid) {
+      <mat-error>Департамент не должен быть длиннее 100 символов</mat-error>
+    }
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Имя</mat-label>
+    <input [formControl]="employeeFormGroup.controls.first_name" matInput/>
+    @if (employeeFormGroup.controls.first_name.invalid) {
+      <mat-error>Имя не должно быть длиннее 100 символов</mat-error>
+    }
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Фамилия</mat-label>
+    <input [formControl]="employeeFormGroup.controls.second_name" matInput/>
+    @if (employeeFormGroup.controls.second_name.invalid) {
+      <mat-error>Имя не должно быть длиннее 100 символов</mat-error>
+    }
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Должность</mat-label>
+    <input [formControl]="employeeFormGroup.controls.job_title" matInput/>
+    @if (employeeFormGroup.controls.job_title.invalid) {
+      <mat-error>Должность не должна быть длиннее 100 символов</mat-error>
+    }
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button color="accent" mat-button mat-dialog-close>Выйти</button>
+  <button
+    (click)="closeDialog()"
+    cdkFocusInitial
+    color="primary"
+    mat-button
+  >
+    Сохранить
+  </button>
+</mat-dialog-actions>

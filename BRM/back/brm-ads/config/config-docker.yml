@@ -1,0 +1,18 @@
+"postgres-ads":
+  "username": "root"
+  "host": "postgres-ads"
+  "port": 5432
+  "dbname": "ads-db"
+  "sslmode": "disable"
+
+"grpc-clients":
+  "core":
+    "host": "brm-core"
+    "port": 50000
+  "leads":
+    "host": "brm-leads"
+    "port": 50003
+
+"grpc-server":
+  "network": "tcp"
+  "port": 50002

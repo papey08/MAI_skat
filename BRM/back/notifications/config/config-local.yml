@@ -1,0 +1,15 @@
+"postgres-notifications":
+  "username": "root"
+  "host": "localhost"
+  "port": 5504
+  "dbname": "notifications-db"
+  "sslmode": "disable"
+
+"grpc-clients":
+  "stats":
+    "host": "localhost"
+    "port": 50004
+
+"grpc-server":
+  "network": "tcp"
+  "port": 50005

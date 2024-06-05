@@ -1,0 +1,30 @@
+<div
+  [class.example-is-computer]="!mobileQuery.matches"
+  [class.example-is-mobile]="mobileQuery.matches"
+  class="example-container"
+>
+  @if (authService.currentUserSig()) {
+    <mat-toolbar class="example-toolbar">
+      <app-toolbar style="width: 100%" [snav]=snav></app-toolbar>
+    </mat-toolbar>
+  }
+
+  <mat-sidenav-container
+    [style.marginTop.px]="mobileQuery.matches ? 56 : 0"
+    class="example-sidenav-container"
+  >
+
+    <mat-sidenav
+      #snav
+      [fixedInViewport]="mobileQuery.matches"
+      [mode]="mobileQuery.matches ? 'over' : 'side'"
+      fixedTopGap="56"
+    >
+      <app-left-menu [employeeId]="+authService.currentUserDataSig()?.['employee-id']!"></app-left-menu>
+    </mat-sidenav>
+
+    <mat-sidenav-content class="main-window">
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

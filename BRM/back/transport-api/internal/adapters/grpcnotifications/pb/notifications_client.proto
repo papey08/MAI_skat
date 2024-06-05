@@ -1,0 +1,60 @@
+syntax = "proto3";
+
+package ads;
+option go_package = "/pb";
+import "google/protobuf/empty.proto";
+
+service NotificationsService {
+  rpc GetNotifications(GetNotificationsRequest) returns (GetNotificationsResponse) {}
+  rpc GetNotification(GetNotificationRequest) returns (GetNotificationResponse) {}
+  rpc SubmitClosedLead(SubmitClosedLeadRequest) returns (google.protobuf.Empty) {}
+}
+
+message Notification {
+  uint64 id = 1;
+  uint64 company_id = 2;
+  string type = 3;
+  int64 date = 4;
+  bool viewed = 5;
+
+  NewLeadInfo new_lead = 6;
+  ClosedLeadInfo closed_lead = 7;
+}
+
+message NewLeadInfo {
+  uint64 lead_id = 1;
+  uint64 client_company = 2;
+}
+
+message ClosedLeadInfo {
+  uint64 ad_id = 1;
+  uint64 producer_company = 2;
+  bool answered = 3;
+}
+
+message GetNotificationsRequest {
+  uint64 company_id = 1;
+  uint64 limit = 2;
+  uint64 offset = 3;
+  bool only_not_viewed = 4;
+}
+
+message GetNotificationsResponse {
+  repeated Notification list = 1;
+  uint64 amount = 2;
+}
+
+message GetNotificationRequest {
+  uint64 company_id = 1;
+  uint64 notification_id = 2;
+}
+
+message GetNotificationResponse {
+  Notification notification = 1;
+}
+
+message SubmitClosedLeadRequest {
+  uint64 company_id = 1;
+  uint64 notification_id = 2;
+  bool submit = 3;
+}

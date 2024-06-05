@@ -1,0 +1,10 @@
+"grpc-clients":
+  "core":
+    "host": "localhost"
+    "port": 50000
+
+"http-server":
+  "host": "localhost"
+  "port": 8091
+
+"origins": ["http://localhost:4200", "http://localhost:80"]

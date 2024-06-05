@@ -1,0 +1,38 @@
+<h2 mat-dialog-title>Уведомление</h2>
+<mat-dialog-content class="fields">
+  <mat-card-subtitle>
+    {{ notification.data.dateString | date }}
+  </mat-card-subtitle>
+  <mat-card-title>
+    {{
+      notification.data.type === "new_lead" ? "Новая сделка" : "Закрытая сделка"
+    }}
+  </mat-card-title>
+  @if (notification.data.type === "closed_lead" && notification.data.closed_lead_info) {
+    <p>
+      Компания «{{ notification.data.closed_lead_info.producer_company_name }}» закрыла
+      сделку по объявлению «{{ notification.data.closed_lead_info.ad_title }}».
+    </p>
+
+    @if (!notification.data.closed_lead_info.answered) {
+      <p>
+        Вы подтверждаете закрытие сделки? Отменить это действие нельзя.
+      </p>
+    } @else {
+      <p>Вы подтвердили закрытие сделки.</p>
+    }
+  }
+  @if (notification.data.type === "new_lead" && notification.data.new_lead_info) {
+    <p>
+      Компания «{{ notification.data.new_lead_info.client_company_name }}»
+      откликнулась на ваше объявление «{{ notification.data.new_lead_info.leadTitle }}». На её отклик была создана
+      сделка.
+    </p>
+  }
+  <mat-dialog-actions>
+    @if (notification.data.closed_lead_info && !notification.data.closed_lead_info.answered) {
+      <button mat-raised-button (click)="submitClosedLead()" color="primary">Подтвердить</button>
+    }
+    <button color="primary" mat-dialog-close mat-raised-button>Закрыть</button>
+  </mat-dialog-actions>
+</mat-dialog-content>

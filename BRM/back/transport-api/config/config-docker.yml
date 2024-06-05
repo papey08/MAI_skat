@@ -1,0 +1,22 @@
+"grpc-clients":
+  "core":
+    "host": "brm-core"
+    "port": 50000
+  "ads":
+    "host": "brm-ads"
+    "port": 50002
+  "leads":
+    "host": "brm-leads"
+    "port": 50003
+  "stats":
+    "host": "stats"
+    "port": 50004
+  "notifications":
+    "host": "notifications"
+    "port": 50005
+
+"http-server":
+  "host": "transport-api"
+  "port": 8090
+
+"origins": ["http://localhost:4200", "http://localhost:80"]

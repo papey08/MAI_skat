@@ -1,0 +1,30 @@
+"postgres-ads":
+  "username": "root"
+  "host": "localhost"
+  "port": 5502
+  "dbname": "ads-db"
+  "sslmode": "disable"
+
+"postgres-core":
+  "username": "root"
+  "host": "localhost"
+  "port": 5500
+  "dbname": "core-db"
+  "sslmode": "disable"
+
+"postgres-leads":
+  "username": "root"
+  "host": "localhost"
+  "port": 5503
+  "dbname": "leads-db"
+  "sslmode": "disable"
+
+"redis-stats":
+  "host": "localhost"
+  "port": 6001
+  "db": 0
+  "expiration": 3 * 3600 * 1000000000 # 3 hours
+
+"grpc-server":
+  "network": "tcp"
+  "port": 50004
