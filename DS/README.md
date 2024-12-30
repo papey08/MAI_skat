@@ -1,6 +1,6 @@
 # DS
 
-## Математика для Data Science
+## Математика для DataScience
 
 ### 40
 
