@@ -1,0 +1,8 @@
+path_to_model: "./model/derevo.pkl"
+
+db_config:
+  host: 'postgres'
+  port: '5432'
+  username: 'root'
+  password: 'root'
+  dbname: 'guide-bot'
