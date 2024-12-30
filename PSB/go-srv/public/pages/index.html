@@ -1,0 +1,94 @@
+{{ define "data" }}
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: 'Arial', 'Helvetica', sans-serif;
+            background-color: #f0f8ff;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: 'Verdana', 'Geneva', sans-serif;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        form {
+            margin-top: 20px;
+        }
+        label, input, select {
+            margin: 5px 0;
+            display: block;
+        }
+    </style>
+    <title>Responses Admin Page</title>
+</head>
+
+<body>
+    <h1>Отзывы, разбитые по категориям</h1>
+    <div class="tables">
+        <table>
+            <th>id отзыва</th>
+            <th>Текст отзыва</th>
+            <th>Категория</th>
+
+            {{ range .Responses }}
+            <tr>
+            <td>{{ .Id }}</td>
+            <td>{{ .OriginalText }}</td>
+            <td>{{ .Category }}</t>
+            </tr>
+            {{ end }}
+        </table>
+    </div>
+
+    <h1>Изменить категорию отзыва</h1>
+    <div class="forms">
+    <form action="http://localhost:8080/response" method="put">
+        <div class="singleform">
+            <label>id</label>
+            <br>
+            <input type="number"
+                   name="insert_second_name"
+                   class="input_field">
+
+            <label>Категория</label>
+            <select>
+                <option value="gratitude">Благодарность</option>
+                <option value="suggestion">Предложение</option>
+                <option value="claim">Претензия</option>
+            </select>
+            <button type="submit">Подтвердить</button>
+        </div>
+    </form>
+    </div>
+
+    <h1>Статистика</h1>
+    <table>
+        <tr>
+            <th>Всего отзывов</th>
+            <th>Отзывов благодарности</th>
+            <th>Отзывов предложений</th>
+            <th>Отзывов претензий</th>
+        </tr>
+        {{ range .Statistics }}
+        <tr>
+            <td>{{ .Total }}</td>
+            <td>{{ .Gratitude }}</td>
+            <td>{{ .Suggestion }}</td>
+            <td>{{ .Claim }}</td>
+        </tr>
+        {{ end }}
+    </table>
+</body>
+
+</html>
+{{ end }}

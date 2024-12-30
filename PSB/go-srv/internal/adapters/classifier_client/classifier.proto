@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package classifier;
+option go_package = "/classifier";
+
+service ProtoService {
+  rpc Predict(PredictRequest) returns (PredictResponse) {}
+}
+
+message PredictRequest {
+  string original_text = 1;
+}
+
+message PredictResponse {
+  string category = 1;
+}

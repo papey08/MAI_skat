@@ -1,0 +1,18 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:15.5
+    container_name: psb-case-db
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: psb-case
+    ports:
+      - "5501:5432"
+    volumes:
+      - ./migrations/:/docker-entrypoint-initdb.d/
+      - psb-case-db:/var/lib/postgresql/data
+
+volumes:
+  psb-case-db:

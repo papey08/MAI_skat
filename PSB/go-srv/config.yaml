@@ -1,0 +1,8 @@
+classifier_addr: "localhost:50051"
+admin_addr: "localhost:8080"
+db:
+  host: "localhost"
+  port: 5501
+  username: "root"
+  password: "root"
+  dbname: "psb-case"
