@@ -1,0 +1,21 @@
+common:
+  nats_url: nats://nats:4222
+  password_salt: password_salt
+  jwt_secret: secret
+
+api-service:
+  host: api-service
+  port: 8099
+
+auth-service:
+  redis_url: redis://auth_redis:6379
+
+core-service:
+  minio_url: core-minio:9000
+  access_key: user
+  secret_key: password
+
+  mongodb_url: mongodb://root:password@core-mongodb:27017
+
+user-service:
+  postgres_url: postgresql+psycopg2://postgres:postgres@user-postgres:5432/postgres

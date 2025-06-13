@@ -1,0 +1,87 @@
+version: '3.8'
+
+services:
+  redis:
+    image: redis:7
+    container_name: auth_redis
+    ports: 
+      - 6379:6379
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes:
+      - redis_data:/data
+
+  minio:
+    image: minio/minio:RELEASE.2025-03-12T18-04-18Z-cpuv1
+    container_name: core-minio
+    ports:
+      - 9000:9000
+      - 9001:9001
+    environment:
+      MINIO_ROOT_USER: user
+      MINIO_ROOT_PASSWORD: password
+    volumes:
+      - minio_data:/data
+    command: server --console-address ":9001" /data
+
+  postgres:
+    image: postgres:14
+    container_name: user-postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    volumes:
+      - ./migrations:/docker-entrypoint-initdb.d/
+      - postgres_data:/var/lib/postgresql/data
+
+  nats:
+    image: nats:2.11
+    container_name: nats
+    ports:
+      - 4222:4222
+      - 8222:8222
+
+  api-service:
+    build:
+      context: .
+      dockerfile: docker/api-service.Dockerfile
+    container_name: api-service
+    ports:
+      - 8099:8099
+    depends_on:
+      - nats
+  
+  auth-service:
+    build:
+      context: .
+      dockerfile: docker/auth-service.Dockerfile
+    container_name: auth-service
+    depends_on:
+      - nats
+      - redis
+
+  core-service:
+    build:
+      context: .
+      dockerfile: docker/core-service.Dockerfile
+    container_name: core-service
+    depends_on:
+      - nats
+      - minio
+
+  user-service:
+    build:
+      context: .
+      dockerfile: docker/user-service.Dockerfile
+    container_name: user-service
+    depends_on:
+      - nats
+      - postgres
+
+
+volumes:
+  redis_data:
+  minio_data:
+  postgres_data:

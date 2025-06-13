@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  nats:
+    image: nats:2.11
+    container_name: nats
+    ports:
+      - 4222:4222
+      - 8222:8222
+
+  api-service:
+    build:
+      context: .
+      dockerfile: docker/api-service.Dockerfile
+    container_name: api-service
+    ports:
+      - 8099:8099
+    depends_on:
+      - nats
+  
+  auth-service:
+    build:
+      context: .
+      dockerfile: docker/auth-service.Dockerfile
+    container_name: auth-service
+    depends_on:
+      - nats
+
+  core-service:
+    build:
+      context: .
+      dockerfile: docker/core-service.Dockerfile
+    container_name: core-service
+    depends_on:
+      - nats
+
+  user-service:
+    build:
+      context: .
+      dockerfile: docker/user-service.Dockerfile
+    container_name: user-service
+    depends_on:
+      - nats

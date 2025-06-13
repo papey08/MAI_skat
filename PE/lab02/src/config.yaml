@@ -1,0 +1,8 @@
+common:
+  nats_url: nats://nats:4222
+  password_salt: password_salt
+  jwt_secret: secret
+
+api-service:
+  host: api-service
+  port: 8099

@@ -1,0 +1,17 @@
+annotated-types
+anyio
+click
+fastapi
+h11
+idna
+nats-py==2.9.0
+pydantic
+pydantic_core
+PyJWT
+python-multipart
+PyYAML
+setuptools==75.8.0
+sniffio
+starlette
+uvicorn
+wheel==0.45.1

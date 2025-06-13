@@ -1,0 +1,1366 @@
+{
+    "openapi": "3.1.0",
+    "info": {
+        "title": "API приложения для хранения файлов",
+        "version": "0.1.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8099"
+        }
+    ],
+    "paths": {
+        "/api/v1/register": {
+            "post": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "Create User",
+                "operationId": "create_user_api_v1_register_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserCreate"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserResponse"
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "Conflict",
+                        "detail": "User not found"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "detail": "Invalid user data"
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "detail": "Internal error"
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/users/{user_id}": {
+            "get": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "Get User",
+                "operationId": "get_user_api_v1_users__user_id__get",
+                "security": [
+                    {
+                        "HTTPBearer": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "title": "User Id"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "detail": "Unauthorized",
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "detail": "User not found",
+                        "description": "Not Found"
+                    },
+                    "403": {
+                        "detail": "Access denied",
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "detail": "Internal error",
+                        "description": "Internal Server Error"
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/users": {
+            "get": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "Get Users",
+                "operationId": "get_users_api_v1_users_get",
+                "security": [
+                    {
+                        "HTTPBearer": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "login",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "default": "",
+                            "title": "Login"
+                        }
+                    },
+                    {
+                        "name": "first_name",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "default": "",
+                            "title": "First Name"
+                        }
+                    },
+                    {
+                        "name": "last_name",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "default": "",
+                            "title": "Last Name"
+                        }
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 100,
+                            "title": "Limit"
+                        }
+                    },
+                    {
+                        "name": "offset",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 0,
+                            "title": "Offset"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/UserResponse"
+                                    },
+                                    "title": "Response Get Users Api V1 Users Get"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "detail": "Unauthorized",
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "detail": "Access denied",
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "detail": "Internal error",
+                        "description": "Internal Server Error"
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/login": {
+            "post": {
+                "tags": [
+                    "auth"
+                ],
+                "summary": "Login",
+                "operationId": "login_api_v1_login_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LoginRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TokensResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "detail": "Login unable"
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "detail": "Internal error"
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/refresh": {
+            "post": {
+                "tags": [
+                    "auth"
+                ],
+                "summary": "Refresh",
+                "operationId": "refresh_api_v1_refresh_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RefreshToken"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TokensResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "detail": "Refresh token has expired"
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "detail": "Internal error"
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/users/{user_id}/folders/{folder_path}": {
+            "post": {
+                "tags": [
+                    "core"
+                ],
+                "summary": "Create Folder",
+                "operationId": "create_folder_api_v1_users__user_id__folders__folder_path__post",
+                "security": [
+                    {
+                        "HTTPBearer": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "title": "User Id"
+                        }
+                    },
+                    {
+                        "name": "folder_path",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Folder Path"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/FolderResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "detail": "Object not found",
+                        "description": "Not Found"
+                    },
+                    "409": {
+                        "detail": "Object already exists",
+                        "description": "Conflict"
+                    },
+                    "401": {
+                        "detail": "Unauthorized",
+                        "description": "Unauthorized"
+                    },
+                    "400": {
+                        "detail": "Object name is invalid",
+                        "description": "Bad Request"
+                    },
+                    "403": {
+                        "detail": "Access denied",
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "detail": "Internal error",
+                        "description": "Internal Server Error"
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "core"
+                ],
+                "summary": "Get Folder",
+                "operationId": "get_folder_api_v1_users__user_id__folders__folder_path__get",
+                "security": [
+                    {
+                        "HTTPBearer": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "title": "User Id"
+                        }
+                    },
+                    {
+                        "name": "folder_path",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Folder Path"
+                        }
+                    },
+                    {
+                        "name": "folder_limit",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 100,
+                            "title": "Folder Limit"
+                        }
+                    },
+                    {
+                        "name": "folder_offset",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 0,
+                            "title": "Folder Offset"
+                        }
+                    },
+                    {
+                        "name": "file_limit",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 100,
+                            "title": "File Limit"
+                        }
+                    },
+                    {
+                        "name": "file_offset",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 0,
+                            "title": "File Offset"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/FolderResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "detail": "Object not found",
+                        "description": "Not Found"
+                    },
+                    "401": {
+                        "detail": "Unauthorized",
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "detail": "Access denied",
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "detail": "Internal error",
+                        "description": "Internal Server Error"
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "core"
+                ],
+                "summary": "Delete Folder",
+                "operationId": "delete_folder_api_v1_users__user_id__folders__folder_path__delete",
+                "security": [
+                    {
+                        "HTTPBearer": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "title": "User Id"
+                        }
+                    },
+                    {
+                        "name": "folder_path",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Folder Path"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/FolderResponse"
+                                }
+                            }
+                        },
+                        "detail": "OK"
+                    },
+                    "404": {
+                        "detail": "Object not found",
+                        "description": "Not Found"
+                    },
+                    "401": {
+                        "detail": "Unauthorized",
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "detail": "Access denied",
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "detail": "Internal error",
+                        "description": "Internal Server Error"
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/users/{user_id}/files/{file_path}": {
+            "post": {
+                "tags": [
+                    "core"
+                ],
+                "summary": "Create File",
+                "operationId": "create_file_api_v1_users__user_id__files__file_path__post",
+                "security": [
+                    {
+                        "HTTPBearer": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "title": "User Id"
+                        }
+                    },
+                    {
+                        "name": "file_path",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "File Path"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Body_create_file_api_v1_users__user_id__files__file_path__post"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/FileResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "detail": "Object not found",
+                        "description": "Not Found"
+                    },
+                    "409": {
+                        "detail": "Object already exists",
+                        "description": "Conflict"
+                    },
+                    "401": {
+                        "detail": "Unauthorized",
+                        "description": "Unauthorized"
+                    },
+                    "400": {
+                        "detail": "Object name is invalid",
+                        "description": "Bad Request"
+                    },
+                    "403": {
+                        "detail": "Access denied",
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "detail": "Internal error",
+                        "description": "Internal Server Error"
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "core"
+                ],
+                "summary": "Get File",
+                "operationId": "get_file_api_v1_users__user_id__files__file_path__get",
+                "security": [
+                    {
+                        "HTTPBearer": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "title": "User Id"
+                        }
+                    },
+                    {
+                        "name": "file_path",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "File Path"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "detail": "Object not found",
+                        "description": "Not Found"
+                    },
+                    "401": {
+                        "detail": "Unauthorized",
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "detail": "Access denied",
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "detail": "Internal error",
+                        "description": "Internal Server Error"
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "core"
+                ],
+                "summary": "Delete File",
+                "operationId": "delete_file_api_v1_users__user_id__files__file_path__delete",
+                "security": [
+                    {
+                        "HTTPBearer": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "title": "User Id"
+                        }
+                    },
+                    {
+                        "name": "file_path",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "File Path"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/FileResponse"
+                                }
+                            }
+                        },
+                        "detail": "OK"
+                    },
+                    "404": {
+                        "detail": "Object not found",
+                        "description": "Not Found"
+                    },
+                    "401": {
+                        "detail": "Unauthorized",
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "detail": "Access denied",
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "detail": "Internal error",
+                        "description": "Internal Server Error"
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/users/{user_id}/files": {
+            "post": {
+                "tags": [
+                    "core"
+                ],
+                "summary": "Create File In Root Folder",
+                "operationId": "create_file_in_root_folder_api_v1_users__user_id__files_post",
+                "security": [
+                    {
+                        "HTTPBearer": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "title": "User Id"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Body_create_file_in_root_folder_api_v1_users__user_id__files_post"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/FileResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "detail": "Object not found",
+                        "description": "Not Found"
+                    },
+                    "409": {
+                        "detail": "Object already exists",
+                        "description": "Conflict"
+                    },
+                    "401": {
+                        "detail": "Unauthorized",
+                        "description": "Unauthorized"
+                    },
+                    "400": {
+                        "detail": "Object name is invalid",
+                        "description": "Bad Request"
+                    },
+                    "403": {
+                        "detail": "Access denied",
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "detail": "Internal error",
+                        "description": "Internal Server Error"
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/users/{user_id}/folders": {
+            "get": {
+                "tags": [
+                    "core"
+                ],
+                "summary": "Get Root Folder",
+                "operationId": "get_root_folder_api_v1_users__user_id__folders_get",
+                "security": [
+                    {
+                        "HTTPBearer": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "title": "User Id"
+                        }
+                    },
+                    {
+                        "name": "folder_limit",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 100,
+                            "title": "Folder Limit"
+                        }
+                    },
+                    {
+                        "name": "folder_offset",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 0,
+                            "title": "Folder Offset"
+                        }
+                    },
+                    {
+                        "name": "file_limit",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 100,
+                            "title": "File Limit"
+                        }
+                    },
+                    {
+                        "name": "file_offset",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 0,
+                            "title": "File Offset"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/FolderResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "detail": "Unauthorized",
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "detail": "Access denied",
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "detail": "Internal error",
+                        "description": "Internal Server Error"
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/users/{user_id}/files_search": {
+            "get": {
+                "tags": [
+                    "core"
+                ],
+                "summary": "Get Files",
+                "operationId": "get_files_api_v1_users__user_id__files_search_get",
+                "security": [
+                    {
+                        "HTTPBearer": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "title": "User Id"
+                        }
+                    },
+                    {
+                        "name": "pattern",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "default": "",
+                            "title": "Pattern"
+                        }
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 100,
+                            "title": "Limit"
+                        }
+                    },
+                    {
+                        "name": "offset",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 0,
+                            "title": "Offset"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/FileSearchResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "detail": "Unauthorized",
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "detail": "Access denied",
+                        "description": "Forbidden"
+                    },
+                    "500": {
+                        "detail": "Internal error",
+                        "description": "Internal Server Error"
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Body_create_file_api_v1_users__user_id__files__file_path__post": {
+                "properties": {
+                    "file": {
+                        "type": "string",
+                        "format": "binary",
+                        "title": "File"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "file"
+                ],
+                "title": "Body_create_file_api_v1_users__user_id__files__file_path__post"
+            },
+            "Body_create_file_in_root_folder_api_v1_users__user_id__files_post": {
+                "properties": {
+                    "file": {
+                        "type": "string",
+                        "format": "binary",
+                        "title": "File"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "file"
+                ],
+                "title": "Body_create_file_in_root_folder_api_v1_users__user_id__files_post"
+            },
+            "FileResponse": {
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "title": "Name"
+                    },
+                    "path": {
+                        "type": "string",
+                        "title": "Path",
+                        "default": "/"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "name"
+                ],
+                "title": "FileResponse"
+            },
+            "FileSearchResponse": {
+                "properties": {
+                    "files": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array",
+                        "title": "Files"
+                    }
+                },
+                "type": "object",
+                "title": "FileSearchResponse"
+            },
+            "FolderResponse": {
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "title": "Name"
+                    },
+                    "path": {
+                        "type": "string",
+                        "title": "Path",
+                        "default": "/"
+                    },
+                    "files": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array",
+                        "title": "Files"
+                    },
+                    "folders": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array",
+                        "title": "Folders"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "name",
+                    "files",
+                    "folders"
+                ],
+                "title": "FolderResponse"
+            },
+            "HTTPValidationError": {
+                "properties": {
+                    "detail": {
+                        "items": {
+                            "$ref": "#/components/schemas/ValidationError"
+                        },
+                        "type": "array",
+                        "title": "Detail"
+                    }
+                },
+                "type": "object",
+                "title": "HTTPValidationError"
+            },
+            "LoginRequest": {
+                "properties": {
+                    "login": {
+                        "type": "string",
+                        "title": "Login"
+                    },
+                    "password": {
+                        "type": "string",
+                        "title": "Password"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "login",
+                    "password"
+                ],
+                "title": "LoginRequest"
+            },
+            "RefreshToken": {
+                "properties": {
+                    "refresh": {
+                        "type": "string",
+                        "title": "Refresh"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "refresh"
+                ],
+                "title": "RefreshToken"
+            },
+            "TokensResponse": {
+                "properties": {
+                    "access": {
+                        "type": "string",
+                        "title": "Access"
+                    },
+                    "refresh": {
+                        "type": "string",
+                        "title": "Refresh"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "access",
+                    "refresh"
+                ],
+                "title": "TokensResponse"
+            },
+            "UserCreate": {
+                "properties": {
+                    "login": {
+                        "type": "string",
+                        "title": "Login"
+                    },
+                    "first_name": {
+                        "type": "string",
+                        "title": "First Name"
+                    },
+                    "last_name": {
+                        "type": "string",
+                        "title": "Last Name"
+                    },
+                    "email": {
+                        "type": "string",
+                        "title": "Email"
+                    },
+                    "password": {
+                        "type": "string",
+                        "title": "Password"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "login",
+                    "first_name",
+                    "last_name",
+                    "email",
+                    "password"
+                ],
+                "title": "UserCreate"
+            },
+            "UserResponse": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "title": "Id"
+                    },
+                    "first_name": {
+                        "type": "string",
+                        "title": "First Name"
+                    },
+                    "last_name": {
+                        "type": "string",
+                        "title": "Last Name"
+                    },
+                    "login": {
+                        "type": "string",
+                        "title": "Login"
+                    },
+                    "email": {
+                        "type": "string",
+                        "title": "Email"
+                    },
+                    "is_admin": {
+                        "type": "boolean",
+                        "title": "Is Admin"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "title": "Created At"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "id",
+                    "first_name",
+                    "last_name",
+                    "login",
+                    "email",
+                    "is_admin",
+                    "created_at"
+                ],
+                "title": "UserResponse"
+            },
+            "ValidationError": {
+                "properties": {
+                    "loc": {
+                        "items": {
+                            "anyOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "integer"
+                                }
+                            ]
+                        },
+                        "type": "array",
+                        "title": "Location"
+                    },
+                    "msg": {
+                        "type": "string",
+                        "title": "Message"
+                    },
+                    "type": {
+                        "type": "string",
+                        "title": "Error Type"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "loc",
+                    "msg",
+                    "type"
+                ],
+                "title": "ValidationError"
+            }
+        },
+        "securitySchemes": {
+            "HTTPBearer": {
+                "type": "http",
+                "scheme": "bearer"
+            }
+        }
+    }
+}
